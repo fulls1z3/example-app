@@ -1,0 +1,19 @@
+################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+*.js
+*.log
+*.d.ts
+*.metadata.json
+/bundles
+/build
+!/config/*.js
+/coverage
+/dist
+/node_modules
+/obj/Debug
+!gulpfile.js
+!karma.conf.js
+npm-debug.log
+!protractor.conf.js
