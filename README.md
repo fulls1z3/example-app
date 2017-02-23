@@ -2,14 +2,14 @@
 
 Example application utilizing @nglibs utilities, showcasing common patterns and best practices. You can find the live app [here](https://nglibs.github.io/example-app/).
 
-This application uses [@nglibs/config](https://github.com/nglibs/config) to fetch the configuration settings loaded during application initialization; [@nglibs/metadata](https://github.com/nglibs/metadata) to update the page title & meta tags every time the route changes; [@nglibs/i18n-router](https://github.com/nglibs/i18n-router) to intercept Router initialization and translates each `path` and `redirectTo` property of Routes; [@nglibs/i18n-router-config-loader](https://github.com/nglibs/i18n-router-config-loader) to load route translations using `@nglibs/config`.
+This application uses [@nglibs/config](https://github.com/nglibs/config) to fetch the configuration settings loaded during application initialization; [@nglibs/meta](https://github.com/nglibs/meta) to update the page title & meta tags every time the route changes; [@nglibs/i18n-router](https://github.com/nglibs/i18n-router) to intercept Router initialization and translates each `path` and `redirectTo` property of Routes; [@nglibs/i18n-router-config-loader](https://github.com/nglibs/i18n-router-config-loader) to load route translations using `@nglibs/config`.
 
 Built with `@angular v2.4.0` and `@angular/router v3.4.0`, bundled with `gulp v4.0` and `webpack v2.2.1`.
 
 ## Included
 
 - [@nglibs/config](https://github.com/nglibs/config)
-- [@nglibs/metadata](https://github.com/nglibs/metadata)
+- [@nglibs/meta](https://github.com/nglibs/meta)
 - [@nglibs/i18n-router](https://github.com/nglibs/i18n-router)
 - [@nglibs/i18n-router-config-loader](https://github.com/nglibs/i18n-router-config-loader)
 
@@ -47,7 +47,7 @@ Copyright (c) 2017 [Burak Tasci]
 [@nglibs]: https://github.com/nglibs
 [@nglibs/example-app]: https://github.com/nglibs/example-app
 [@nglibs/config]: https://github.com/nglibs/config
-[@nglibs/metadata]: https://github.com/nglibs/metadata
+[@nglibs/meta]: https://github.com/nglibs/meta
 [@nglibs/i18n-router]: https://github.com/nglibs/i18n-router
 [@nglibs/i18n-router-config-loader]: https://github.com/nglibs/i18n-router-config-loader
 [ng-router-loader]: https://github.com/shlomiassaf/ng-router-loader
