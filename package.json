@@ -1,6 +1,6 @@
 {
   "name": "@nglibs/example-app",
-  "version": "0.2.0-beta.3",
+  "version": "0.2.0-beta.4",
   "description": "Example app showcasing the @nglibs utilities",
   "repository": {
     "type": "git",
@@ -49,10 +49,10 @@
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.7.7",
     "lodash": "^4.17.4",
-    "@nglibs/config": "^0.2.0-rc.2",
-    "@nglibs/metadata": "^0.2.0-rc.1",
-    "@nglibs/i18n-router": "^0.2.0-beta.2",
-    "@nglibs/i18n-router-config-loader": "^0.2.0-beta.3"
+    "@nglibs/config": "^0.2.0-rc.3",
+    "@nglibs/meta": "^0.2.0-rc.3",
+    "@nglibs/i18n-router": "^0.2.0-beta.3",
+    "@nglibs/i18n-router-config-loader": "^0.2.0-beta.4"
   },
   "devDependencies": {
     "@angular/cli": "1.0.0-beta.32",

@@ -8,7 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 // libs
 import * as _ from 'lodash';
 import { ConfigModule, ConfigLoader, ConfigHttpLoader, ConfigService } from '@nglibs/config';
-import { MetadataModule, MetadataLoader, MetadataStaticLoader } from '@nglibs/metadata';
+import { MetaModule, MetaLoader, MetaStaticLoader } from '@nglibs/meta';
 import { I18NRouterModule, I18NRouterLoader, I18N_ROUTER_PROVIDERS, RAW_ROUTES } from '@nglibs/i18n-router';
 import { I18NRouterConfigLoader } from '@nglibs/i18n-router-config-loader';
 
@@ -22,8 +22,8 @@ export function configFactory(http: Http): ConfigLoader {
   return new ConfigHttpLoader(http, './config.json');
 }
 
-export function metadataFactory(config: ConfigService): MetadataLoader {
-  return new MetadataStaticLoader({
+export function metaFactory(config: ConfigService): MetaLoader {
+  return new MetaStaticLoader({
     pageTitlePositioning: config.getSettings().seo.pageTitlePositioning,
     pageTitleSeparator: config.getSettings().seo.pageTitleSeparator,
     applicationName: config.getSettings().system.applicationName,
@@ -55,7 +55,7 @@ export function i18nRouterFactory(config: ConfigService, rawRoutes: Routes): I18
     HttpModule,
     RouterModule.forRoot(routes),
     ConfigModule.forRoot({ provide: ConfigLoader, useFactory: (configFactory), deps: [Http] }),
-    MetadataModule.forRoot({ provide: MetadataLoader, useFactory: (metadataFactory), deps: [ConfigService] }),
+    MetaModule.forRoot({ provide: MetaLoader, useFactory: (metaFactory), deps: [ConfigService] }),
     I18NRouterModule.forRoot(routes, [
       { provide: I18NRouterLoader, useFactory: (i18nRouterFactory), deps: [ConfigService, RAW_ROUTES] }
     ])

@@ -9,7 +9,7 @@ export const routes: Routes = [
         path: '',
         component: HomeComponent,
         data: {
-            metadata: {
+            meta: {
                 title: '',
                 override: true,
                 description: 'Welcome to @nglibs/example'
