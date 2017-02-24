@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 // libs
 import { ConfigService } from '@nglibs/config';
-import { MetadataService } from '@nglibs/metadata';
+import { MetaService } from '@nglibs/meta';
 import { I18NRouterService } from '@nglibs/i18n-router';
 
 @Component({
@@ -16,9 +16,9 @@ export class AppComponent implements OnInit {
 
   constructor(private config: ConfigService,
               private i18nRouter: I18NRouterService,
-              private metadata: MetadataService) {
+              private meta: MetaService) {
     i18nRouter.init();
-    metadata.setTag('og:locale', this.config.getSettings().i18n.defaultLanguage.culture);
+    meta.setTag('og:locale', this.config.getSettings().i18n.defaultLanguage.culture);
   }
 
   ngOnInit(): void {

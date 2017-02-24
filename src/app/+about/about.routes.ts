@@ -12,7 +12,7 @@ export const routes: Routes = [
         path: '',
         component: AboutComponent,
         data: {
-            metadata: {
+            meta: {
                 title: 'About',
                 description: 'This page provides a dummy overview of nothing'
             }
@@ -22,7 +22,7 @@ export const routes: Routes = [
         path: 'us/:topicId',
         component: AboutUsComponent,
         data: {
-            metadata: {
+            meta: {
                 title: 'About us',
                 description: 'Yeah, I think this page tells something about us'
             }
@@ -32,7 +32,7 @@ export const routes: Routes = [
         path: 'banana',
         component: AboutBananaComponent,
         data: {
-            metadata: {
+            meta: {
                 title: 'Banana republic',
                 description: 'If your life sucks, start a new one in Banana Republic'
             }
@@ -42,7 +42,7 @@ export const routes: Routes = [
         path: 'apple/:fruitId/pear',
         component: AboutApplePearComponent,
         data: {
-            metadata: {
+            meta: {
                 title: 'Apple or pear',
                 description: 'I want an apple but you give me a pear, shame on you'
             }

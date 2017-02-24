@@ -126,7 +126,7 @@ module.exports = webpackMerge(commonConfig({ env: ENV }),
                     'rxjs',
                     'lodash',
                     '@nglibs/config',
-                    '@nglibs/metadata',
+                    '@nglibs/meta',
                     '@nglibs/i18n-router',
                     '@nglibs/i18n-router-config-loader'
                 ]
