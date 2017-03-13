@@ -1,4 +1,4 @@
-{
+﻿{
   "rulesDirectory": [
     "node_modules/codelyzer"
   ],
@@ -129,8 +129,18 @@
       "check-type"
     ],
 
-    "directive-selector": [true, "attribute", [ "app" ], "camelCase" ],
-    "component-selector": [true, "element", [ "app", "i18n" ], "kebab-case" ],
+    "directive-selector": [
+      true,
+      "attribute",
+      [ "app" ],
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      [ "app", "i18n" ],
+      "kebab-case"
+    ],
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
@@ -138,14 +148,10 @@
     "no-input-rename": true,
     "no-output-rename": true,
     "no-forward-ref": false,
-    "use-life-cycle-interface": true,
     "use-pipe-transform-interface": true,
     "pipe-naming": [ true, "camelCase", "kr" ],
     "component-class-suffix": true,
     "directive-class-suffix": true,
-    "import-destructuring-spacing": true,
-    "templates-use-public": true,
-    "no-access-missing-member": true,
     "invoke-injectable": true
   }
 }
