@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Webpack helpers & dependencies
  */
 const $$ = require('./webpack-helpers');
@@ -208,7 +208,6 @@ module.exports = function (options) {
             new loaderOptionsPlugin({
                 options: {
                     tslint: {
-                        emitErrors: false,
                         failOnHint: false
                     }
                 }
