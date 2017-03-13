@@ -24,4 +24,5 @@ import { AboutApplePearComponent } from './about-apple-pear.component';
     AboutApplePearComponent
   ]
 })
-export class AboutModule { }
+export class AboutModule {
+}
