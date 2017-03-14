@@ -81,19 +81,19 @@ const assets = {
         .on('end', done);
     }
   },
-  'json': {
+  'assets': {
     copy: function (done) {
       gulp.src([
-        './src/config.json'
+        './src/assets/**/*.json'
       ])
-        .pipe(gulp.dest('./build'))
+        .pipe(gulp.dest('./build/assets'))
         .on('end', done);
     }
   },
   copy: function (done) {
     $.async.parallel([
         assets['css'].copy,
-        assets['json'].copy
+        assets['assets'].copy
       ],
       function (err) {
         $$.done(err, done);
@@ -113,22 +113,10 @@ const views = {
         .pipe(gulp.dest('./build'))
         .on('end', done);
     }
-  }// ,
-  // dist: {
-  //     copy: function (done) {
-  //         gulp.src('./dist/index.html')
-  //             .pipe(gulp.dest('./'))
-  //             .on('end', done);
-  //     },
-  //     clean: function (done) {
-  //         $.rimraf('./dist/index.html', done);
-  //     }
-  // }
+  }
 };
 
 views.build.copy.displayName = 'copy:views';
-// views.dist.copy.displayName = 'copy:index.html';
-// views.dist.clean.displayName = 'clean:index.html';
 
 /**
  * TypeScript

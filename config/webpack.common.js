@@ -171,7 +171,7 @@ module.exports = function (options) {
        */
       new contextReplacementPlugin(
         // fix the warning in ./~/@angular/core/src/linker/system_js_ng_module_factory_loader.js
-        /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+        /angular([\\\/])core([\\\/])(esm([\\\/])src|src)([\\\/])linker/,
         $$.root('./build')
       ),
 
@@ -185,9 +185,17 @@ module.exports = function (options) {
        */
       new copyWebpackPlugin([
         {
-          from: './build/config.json',
-          to: './'
-        }
+          from: './build/assets/config.json',
+          to: './assets/config.json'
+        },
+        {
+          from: './build/assets/i18n/en.json',
+          to: './assets/i18n/en.json'
+        },
+        {
+          from: './build/assets/i18n/tr.json',
+          to: './assets/i18n/tr.json'
+        },
       ]),
 
       /**
