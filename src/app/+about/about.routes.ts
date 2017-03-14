@@ -13,8 +13,8 @@ export const routes: Routes = [
     component: AboutComponent,
     data: {
       meta: {
-        title: 'About',
-        description: 'This page provides a dummy overview of nothing'
+        title: 'PUBLIC.ABOUT.PAGE_TITLE',
+        description: 'PUBLIC.ABOUT.META_DESC'
       }
     }
   },
@@ -23,8 +23,8 @@ export const routes: Routes = [
     component: AboutUsComponent,
     data: {
       meta: {
-        title: 'About us',
-        description: 'Yeah, I think this page tells something about us'
+        title: 'PUBLIC.ABOUT_US.PAGE_TITLE',
+        description: 'PUBLIC.ABOUT_US.META_DESC'
       }
     }
   },
@@ -33,8 +33,8 @@ export const routes: Routes = [
     component: AboutBananaComponent,
     data: {
       meta: {
-        title: 'Banana republic',
-        description: 'If your life sucks, start a new one in Banana Republic'
+        title: 'PUBLIC.ABOUT_BANANA.PAGE_TITLE',
+        description: 'PUBLIC.ABOUT_BANANA.META_DESC'
       }
     }
   },
@@ -43,8 +43,8 @@ export const routes: Routes = [
     component: AboutApplePearComponent,
     data: {
       meta: {
-        title: 'Apple or pear',
-        description: 'I want an apple but you give me a pear, shame on you'
+        title: 'PUBLIC.ABOUT_APPLE_PEAR.PAGE_TITLE',
+        description: 'PUBLIC.ABOUT_APPLE_PEAR.META_DESC'
       }
     }
   }

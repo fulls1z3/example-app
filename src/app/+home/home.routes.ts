@@ -10,9 +10,9 @@ export const routes: Routes = [
     component: HomeComponent,
     data: {
       meta: {
-        title: '',
+        title: 'PUBLIC.HOME.PAGE_TITLE',
         override: true,
-        description: 'Welcome to @nglibs/example'
+        description: 'PUBLIC.HOME.META_DESC'
       }
     }
   }
