@@ -4,19 +4,20 @@ Example application utilizing @nglibs utilities, showcasing common patterns and 
 
 This application uses [@nglibs/config](https://github.com/nglibs/config) to fetch the configuration settings loaded during application initialization; [@nglibs/meta](https://github.com/nglibs/meta) to update the page title & meta tags every time the route changes; [@nglibs/i18n-router](https://github.com/nglibs/i18n-router) to intercept Router initialization and translates each `path` and `redirectTo` property of Routes; [@nglibs/i18n-router-config-loader](https://github.com/nglibs/i18n-router-config-loader) to load route translations using `@nglibs/config`.
 
-Built with `@angular v2.4.0` and `@angular/router v3.4.0`, bundled with `gulp v4.0` and `webpack v2.2.1`.
+Built with `@angular v4.0.0-beta.8`, bundled with `gulp v4.0` and `webpack v2.2.1`.
 
 ## Included
 
-- [@nglibs/config](https://github.com/nglibs/config)
-- [@nglibs/meta](https://github.com/nglibs/meta)
-- [@nglibs/i18n-router](https://github.com/nglibs/i18n-router)
-- [@nglibs/i18n-router-config-loader](https://github.com/nglibs/i18n-router-config-loader)
+- [@nglibs/config]
+- [@nglibs/meta]
+- [@nglibs/i18n-router]
+- [@nglibs/i18n-router-config-loader]
+- [@ngx-translate](https://github.com/ngx-translate/core)
 
 ## Prerequisites
-Verify that you are running at least node `v4.x.x` and npm `3.x.x` by running `node -v` and `npm -v` in a terminal/console window. Older versions produce errors.
+Packages in this example app depend on `@angular v4.0.0`. Older versions contain outdated dependencies, might produce errors.
 
-You should also upgrade to a minimum version of `TypeScript 2.1.x`.
+Also, please ensure that you are using **`Typescript v2.1.6`** or higher.
 
 ## Installing
 
