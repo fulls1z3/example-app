@@ -15,7 +15,7 @@ const checkerPlugin = require('awesome-typescript-loader').CheckerPlugin,
  *
  * See: http://webpack.github.io/docs/configuration.html#cli
  */
-module.exports = function (options) {
+module.exports = function(options) {
   const isProd = options.env === 'production';
   return {
     /**
@@ -195,7 +195,7 @@ module.exports = function (options) {
         {
           from: './build/assets/i18n/tr.json',
           to: './assets/i18n/tr.json'
-        },
+        }
       ]),
 
       /**

@@ -14,7 +14,7 @@ const ENV = process.env.ENV = process.env.NODE_ENV = 'test';
  *
  * See: http://webpack.github.io/docs/configuration.html#cli
  */
-module.exports = function (options) {
+module.exports = function () {
   return {
     /**
      * Source map for Karma from the help of karma-sourcemap-loader &  karma-webpack
@@ -183,7 +183,7 @@ module.exports = function (options) {
        */
       new contextReplacementPlugin(
         // fix the warning in ./~/@angular/core/src/linker/system_js_ng_module_factory_loader.js
-        /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+        /angular([\\\/])core([\\\/])(esm([\\\/])src|src)([\\\/])linker/,
         $$.root('./build')
       ),
 

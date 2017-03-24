@@ -13,7 +13,7 @@
     "typeRoots": [
       "node_modules/@types"
     ],
-    "outDir": "./temp",
+    "outDir": "./.temp",
     "rootDir": "."
   },
   "exclude": [

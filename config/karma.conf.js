@@ -1,10 +1,9 @@
 ﻿/**
  * Helpers & dependencies
  */
-const $$ = require('./helpers');
 const webpackConfig = require('./webpack.test.js')({env: 'test'});
 
-module.exports = function (config) {
+module.exports = function(config) {
   const configuration = {
     // base path that will be used to resolve all patterns (e.g. files, exclude)
     basePath: '',

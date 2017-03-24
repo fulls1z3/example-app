@@ -24,7 +24,7 @@ const tasks = {};
  * AoT
  */
 const aot = {
-  compile: function (done) {
+  compile: function(done) {
     const options = {
       continueOnError: false, // default = false, true means don't emit error event
       pipeStdout: false, // default = false, true means stdout is written to file.contents
@@ -49,31 +49,31 @@ aot.compile.displayName = 'compile:ngc';
  * Clean file(s)
  */
 const clean = {
-  './temp': function (done) {
-    $.rimraf('./temp', done);
-  },
-  './build': function (done) {
+  build: function(done) {
     $.rimraf('./build', done);
   },
-  './dist': function (done) {
+  dist: function(done) {
     $.rimraf('./dist', done);
   },
-  './index.html': function (done) {
+  artifacts: function(done) {
     $.rimraf('./index.html', done);
+  },
+  temp: function(done) {
+    $.rimraf('./.temp', done);
   }
 };
 
-clean['./temp'].displayName = 'clean:./temp/**';
-clean['./build'].displayName = 'clean:./build/**';
-clean['./dist'].displayName = 'clean:./dist/**';
-clean['./index.html'].displayName = 'clean:./index.html';
+clean.build.displayName = 'clean:build';
+clean.dist.displayName = 'clean:dist';
+clean.artifacts.displayName = 'clean:artifacts';
+clean.temp.displayName = 'clean:temp';
 
 /**
  * Assets
  */
 const assets = {
-  'css': {
-    copy: function (done) {
+  css: {
+    copy: function(done) {
       gulp.src([
         './src/**/*.css'
       ])
@@ -81,8 +81,8 @@ const assets = {
         .on('end', done);
     }
   },
-  'assets': {
-    copy: function (done) {
+  assets: {
+    copy: function(done) {
       gulp.src([
         './src/assets/**/*.json'
       ])
@@ -90,12 +90,12 @@ const assets = {
         .on('end', done);
     }
   },
-  copy: function (done) {
+  copy: function(done) {
     $.async.parallel([
-        assets['css'].copy,
-        assets['assets'].copy
+        assets.css.copy,
+        assets.assets.copy
       ],
-      function (err) {
+      function(err) {
         $$.done(err, done);
       });
   }
@@ -108,7 +108,7 @@ assets.copy.displayName = 'copy:assets';
  */
 const views = {
   build: {
-    copy: function (done) {
+    copy: function(done) {
       gulp.src('./src/**/*.html')
         .pipe(gulp.dest('./build'))
         .on('end', done);
@@ -122,7 +122,7 @@ views.build.copy.displayName = 'copy:views';
  * TypeScript
  */
 const ts = {
-  copy: function (done) {
+  copy: function(done) {
     gulp.src([
       './src/**/*.ts',
       '!./environments/**/*.ts'
@@ -130,7 +130,7 @@ const ts = {
       .pipe(gulp.dest('./build'))
       .on('end', done);
   },
-  lint: function (done) {
+  lint: function(done) {
     gulp.src([
       './src/**/*.ts'
     ])
@@ -146,19 +146,19 @@ ts.lint.displayName = 'lint:ts';
  * Bundle
  */
 const bundle = {
-  dev: function (done) {
+  dev: function(done) {
     const conf = require('./webpack.dev.js');
 
     $.webpack(conf)
-      .run(function (err, stats) {
+      .run(function(err, stats) {
         $$.webpackFormatter(err, stats, done);
       });
   },
-  prod: function (done) {
+  prod: function(done) {
     const conf = require('./webpack.prod.js');
 
     $.webpack(conf)
-      .run(function (err, stats) {
+      .run(function(err, stats) {
         $$.webpackFormatter(err, stats, done);
       });
   }
@@ -171,7 +171,7 @@ bundle.prod.displayName = 'bundle:prod';
  * dev-server
  */
 const serve = {
-  dev: function (done) {
+  dev: function() {
     // modify some webpack config options
     const config = require($$.root('./config/webpack.dev.js'));
 
@@ -182,7 +182,7 @@ const serve = {
       stats: {
         colors: true
       }
-    }).listen(3000, 'localhost', function (err) {
+    }).listen(3000, 'localhost', function(err) {
       if (err)
         throw new gutil.PluginError('webpack-dev-server', err);
 
@@ -197,14 +197,14 @@ serve.dev.displayName = 'serve:dev';
  * Tests
  */
 const tests = {
-  run: function (done) {
+  run: function(done) {
     const server = require('karma').Server;
 
     new server({
         configFile: $$.root('./karma.conf.js'),
         singleRun: true
       },
-      function () {
+      function() {
         done();
         process.exit(0);
       }).start();
@@ -230,10 +230,10 @@ tasks.tests = tests;
  */
 gulp.task('clean',
   gulp.parallel(
-    tasks.clean['./temp'],
-    tasks.clean['./build'],
-    tasks.clean['./dist'],
-    tasks.clean['./index.html']
+    tasks.clean.build,
+    tasks.clean.dist,
+    tasks.clean.artifacts,
+    tasks.clean.temp
   ));
 
 /**
@@ -260,7 +260,7 @@ gulp.task('build:prod',
       tasks.ts.copy
     ),
     tasks.aot.compile,
-    tasks.clean['./temp'],
+    tasks.clean.temp,
     tasks.bundle.prod
   ));
 

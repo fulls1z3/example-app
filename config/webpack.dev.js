@@ -210,7 +210,7 @@ module.exports = webpackMerge(commonConfig({env: ENV}),
     devServer: {
       port: 'localhost',
       host: '3000',
-      contentBase: "./dist",
+      contentBase: './dist',
       historyApiFallback: true,
       watchOptions: {
         aggregateTimeout: 300,

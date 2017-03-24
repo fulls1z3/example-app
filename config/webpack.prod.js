@@ -10,7 +10,7 @@ const noEmitOnErrorsPlugin = require('webpack/lib/NoEmitOnErrorsPlugin'),
   definePlugin = require('webpack/lib/DefinePlugin'),
   commonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin'),
   uglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin'),
-  compressionPlugin = require('compression-webpack-plugin'),
+  // compressionPlugin = require('compression-webpack-plugin'),
   scriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin'),
   loaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 
