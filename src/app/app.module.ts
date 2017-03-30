@@ -22,7 +22,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 // for AoT compilation
 export function configFactory(http: Http): ConfigLoader {
-  return new ConfigHttpLoader(http, './dist/assets/config.json');
+  return new ConfigHttpLoader(http, './assets/config.json');
 }
 
 export function metaFactory(config: ConfigService, translate: TranslateService): MetaLoader {
@@ -50,7 +50,7 @@ export function i18nRouterFactory(config: ConfigService, rawRoutes: Routes): I18
 }
 
 export function translateFactory(http: Http): TranslateLoader {
-  return new TranslateHttpLoader(http, './dist/assets/i18n/');
+  return new TranslateHttpLoader(http, './assets/i18n/');
 }
 
 @NgModule({

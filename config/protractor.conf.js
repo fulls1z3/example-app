@@ -10,8 +10,8 @@ exports.config = {
 
   // use `npm run e2e`
   specs: [
-    $$.root(`./e2e/**/**.e2e.ts`),
-    $$.root(`./e2e/**/*.e2e.ts`)
+    $$.root(`e2e/**/**.e2e.ts`),
+    $$.root(`e2e/**/*.e2e.ts`)
   ],
   exclude: [],
 

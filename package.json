@@ -6,16 +6,6 @@
     "type": "git",
     "url": "https://github.com/nglibs/example-app.git"
   },
-  "keywords": [
-    "webpack",
-    "aot compilation",
-    "aot",
-    "showcase",
-    "demo",
-    "example",
-    "nglibs",
-    "angular"
-  ],
   "author": {
     "name": "Burak Tasci",
     "email": "me@fulls1z3.com"
@@ -28,7 +18,7 @@
   "scripts": {
     "build:dev": "gulp clean && gulp build:dev",
     "build:prod": "gulp clean && gulp build:prod",
-    "serve": "gulp clean && gulp serve",
+    "serve": "nodemon ./.server/spa-server.js",
     "test": "karma start"
   },
   "dependencies": {
@@ -52,6 +42,13 @@
     "@ngx-translate/http-loader": "^0.0.3"
   },
   "devDependencies": {
+    "express": "^4.15.2",
+    "debug": "^2.2.0",
+    "compression": "^1.6.2",
+    "morgan": "^1.7.0",
+    "body-parser": "^1.15.0",
+    "nodemon": "^1.11.0",
+
     "@angular/compiler": "~4.0.0",
     "@angular/compiler-cli": "~4.0.0",
     "@types/node": "^7.0.12",
@@ -66,7 +63,6 @@
     "gulp-exec": "^2.1.3",
     "gulp-tslint": "^7.1.0",
     "webpack": "fulls1z3/webpack#v2.3.2-harmony",
-    "webpack-dev-server": "^2.4.2",
     "webpack-merge": "^4.0.0",
     "@ngtools/webpack": "1.3.0",
 

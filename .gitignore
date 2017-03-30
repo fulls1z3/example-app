@@ -3,7 +3,7 @@
 # compiled output
 bundles/
 build/
-dist/
+public/
 *.js
 *.d.ts
 *.metadata.json
@@ -23,4 +23,5 @@ coverage/
 
 # misc
 !config/*.js
+!.server/spa-server.js
 npm-debug.log

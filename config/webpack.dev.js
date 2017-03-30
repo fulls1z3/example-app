@@ -10,7 +10,6 @@ const definePlugin = require('webpack/lib/DefinePlugin'),
   dllBundlesPlugin = require('webpack-dll-bundles-plugin').DllBundlesPlugin,
   commonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin'),
   addAssetHtmlPlugin = require('add-asset-html-webpack-plugin'),
-  scriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin'),
   loaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 
 const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
@@ -36,14 +35,6 @@ module.exports = webpackMerge(commonConfig({env: ENV}),
      * See: http://webpack.github.io/docs/configuration.html#output
      */
     output: {
-      /**
-       * The output directory as absolute path (required).
-       *
-       * See: http://webpack.github.io/docs/configuration.html#output-path
-       */
-      path: $$.root('./dist'),
-      publicPath: 'http://localhost:3000/dist/',
-
       /**
        * Specifies the name of each output file on disk.
        * IMPORTANT: You must not specify an absolute path here!
@@ -128,10 +119,12 @@ module.exports = webpackMerge(commonConfig({env: ENV}),
             '@nglibs/config',
             '@nglibs/meta',
             '@nglibs/i18n-router',
-            '@nglibs/i18n-router-config-loader'
+            '@nglibs/i18n-router-config-loader',
+            '@ngx-translate/core',
+            '@ngx-translate/http-loader'
           ]
         },
-        dllDir: $$.root('./build/dll'),
+        dllDir: $$.root('build/dll'),
         webpackConfig: webpackMergeDll(commonConfig({env: ENV}),
           {
             devtool: 'cheap-module-source-map',
@@ -171,20 +164,9 @@ module.exports = webpackMerge(commonConfig({env: ENV}),
        * See: https://github.com/SimenB/add-asset-html-webpack-plugin
        */
       new addAssetHtmlPlugin([
-        {filepath: $$.root(`./build/dll/${dllBundlesPlugin.resolveFile('polyfills')}`)},
-        {filepath: $$.root(`./build/dll/${dllBundlesPlugin.resolveFile('vendor')}`)}
+        {filepath: $$.root(`build/dll/${dllBundlesPlugin.resolveFile('polyfills')}`)},
+        {filepath: $$.root(`build/dll/${dllBundlesPlugin.resolveFile('vendor')}`)}
       ]),
-
-      /**
-       * Plugin: ScriptExtHtmlWebpackPlugin
-       * Description: Enhances html-webpack-plugin functionality
-       * with different deployment options for your scripts including:
-       *
-       * See: https://github.com/numical/script-ext-html-webpack-plugin
-       */
-      new scriptExtHtmlWebpackPlugin({
-        defaultAttribute: 'defer'
-      }),
 
       /**
        * Plugin LoaderOptionsPlugin (experimental)

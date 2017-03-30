@@ -52,8 +52,8 @@ const clean = {
   build: function(done) {
     $.rimraf('./build', done);
   },
-  dist: function(done) {
-    $.rimraf('./dist', done);
+  'public': function(done) {
+    $.rimraf(`./public`, done);
   },
   artifacts: function(done) {
     $.rimraf('./index.html', done);
@@ -64,7 +64,7 @@ const clean = {
 };
 
 clean.build.displayName = 'clean:build';
-clean.dist.displayName = 'clean:dist';
+clean.public.displayName = 'clean:public';
 clean.artifacts.displayName = 'clean:artifacts';
 clean.temp.displayName = 'clean:temp';
 
@@ -113,10 +113,18 @@ const views = {
         .pipe(gulp.dest('./build'))
         .on('end', done);
     }
+  },
+  assets: {
+    copy: function(done) {
+      gulp.src('./public/assets/index.html')
+        .pipe(gulp.dest('./public'))
+        .on('end', done);
+    }
   }
 };
 
 views.build.copy.displayName = 'copy:views';
+views.assets.copy.displayName = 'copy:index.html';
 
 /**
  * TypeScript
@@ -168,32 +176,6 @@ bundle.dev.displayName = 'bundle:dev';
 bundle.prod.displayName = 'bundle:prod';
 
 /**
- * dev-server
- */
-const serve = {
-  dev: function() {
-    // modify some webpack config options
-    const config = require($$.root('./config/webpack.dev.js'));
-
-    // Start a webpack-dev-server
-    new $.webpackDevServer($.webpack(config), {
-      publicPath: '/' + config.output.publicPath,
-      quiet: true,
-      stats: {
-        colors: true
-      }
-    }).listen(3000, 'localhost', function(err) {
-      if (err)
-        throw new gutil.PluginError('webpack-dev-server', err);
-
-      console.log('[webpack-dev-server]', 'http://localhost:3000/dist');
-    });
-  }
-};
-
-serve.dev.displayName = 'serve:dev';
-
-/**
  * Tests
  */
 const tests = {
@@ -201,7 +183,7 @@ const tests = {
     const server = require('karma').Server;
 
     new server({
-        configFile: $$.root('./karma.conf.js'),
+        configFile: $$.root('karma.conf.js'),
         singleRun: true
       },
       function() {
@@ -222,7 +204,6 @@ tasks.assets = assets;
 tasks.views = views;
 tasks.ts = ts;
 tasks.bundle = bundle;
-tasks.serve = serve;
 tasks.tests = tests;
 
 /**
@@ -231,7 +212,7 @@ tasks.tests = tests;
 gulp.task('clean',
   gulp.parallel(
     tasks.clean.build,
-    tasks.clean.dist,
+    tasks.clean.public,
     tasks.clean.artifacts,
     tasks.clean.temp
   ));
@@ -246,7 +227,8 @@ gulp.task('build:dev',
       tasks.views.build.copy,
       tasks.ts.copy
     ),
-    tasks.bundle.dev
+    tasks.bundle.dev,
+    views.assets.copy
   ));
 
 /**
@@ -261,21 +243,8 @@ gulp.task('build:prod',
     ),
     tasks.aot.compile,
     tasks.clean.temp,
-    tasks.bundle.prod
-  ));
-
-/**
- * Task: serve
- */
-gulp.task('serve',
-  gulp.series(
-    gulp.parallel(
-      tasks.assets.copy,
-      tasks.views.build.copy,
-      tasks.ts.copy
-    ),
-    tasks.bundle.dev,
-    tasks.serve.dev
+    tasks.bundle.prod,
+    views.assets.copy
   ));
 
 /**

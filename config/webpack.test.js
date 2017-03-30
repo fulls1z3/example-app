@@ -41,8 +41,8 @@ module.exports = function () {
        * Make sure root is ./build
        */
       modules: [
-        $$.root('./build'),
-        $$.root('./node_modules')
+        $$.root('build'),
+        $$.root('node_modules')
       ]
     },
 
@@ -104,7 +104,7 @@ module.exports = function () {
         {
           test: /\.json$/,
           use: 'json-loader',
-          exclude: [$$.root('./build/index.html')]
+          exclude: [$$.root('build/index.html')]
         },
 
         /**
@@ -116,7 +116,7 @@ module.exports = function () {
         {
           test: /\.css$/,
           use: ['to-string-loader', 'css-loader'],
-          exclude: [$$.root('./build/index.html')]
+          exclude: [$$.root('build/index.html')]
         },
 
         /**
@@ -128,7 +128,7 @@ module.exports = function () {
         {
           test: /\.html$/,
           use: 'raw-loader',
-          exclude: [$$.root('./build/index.html')]
+          exclude: [$$.root('build/index.html')]
         },
 
         /**
@@ -141,7 +141,7 @@ module.exports = function () {
           enforce: 'post',
           test: /\.(js|ts)$/,
           use: 'istanbul-instrumenter-loader?esModules',
-          include: [$$.root('./build/index.html')],
+          include: [$$.root('build/index.html')],
           exclude: [
             /\.(e2e|spec|d)\.ts$/,
             /node_modules/
@@ -184,7 +184,7 @@ module.exports = function () {
       new contextReplacementPlugin(
         // fix the warning in ./~/@angular/core/src/linker/system_js_ng_module_factory_loader.js
         /angular([\\\/])core([\\\/])(esm([\\\/])src|src)([\\\/])linker/,
-        $$.root('./build')
+        $$.root('build')
       ),
 
       /**

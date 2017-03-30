@@ -11,7 +11,6 @@ const noEmitOnErrorsPlugin = require('webpack/lib/NoEmitOnErrorsPlugin'),
   commonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin'),
   uglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin'),
   // compressionPlugin = require('compression-webpack-plugin'),
-  scriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin'),
   loaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 
 const ENV = process.env.ENV = process.env.NODE_ENV = 'production';
@@ -37,14 +36,6 @@ module.exports = webpackMerge(commonConfig({env: ENV}),
      * See: http://webpack.github.io/docs/configuration.html#output
      */
     output: {
-      /**
-       * The output directory as absolute path (required).
-       *
-       * See: http://webpack.github.io/docs/configuration.html#output-path
-       */
-      path: $$.root('./dist'),
-      publicPath: 'dist/',
-
       /**
        * Specifies the name of each output file on disk.
        * IMPORTANT: You must not specify an absolute path here!
@@ -167,18 +158,6 @@ module.exports = webpackMerge(commonConfig({env: ENV}),
       //    regExp: /\.css$|\.html$|\.js$|\.map$/,
       //    threshold: 2 * 1024
       //}),
-
-      /**
-       * Plugin: ScriptExtHtmlWebpackPlugin
-       * Description: Enhances html-webpack-plugin functionality
-       * with different deployment options for your scripts including:
-       *
-       * See: https://github.com/numical/script-ext-html-webpack-plugin
-       */
-      new scriptExtHtmlWebpackPlugin({
-        defaultAttribute: 'defer',
-        async: [/polyfill/]
-      }),
 
       /**
        * Plugin LoaderOptionsPlugin (experimental)

@@ -7,6 +7,7 @@ const checkerPlugin = require('awesome-typescript-loader').CheckerPlugin,
   contextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin'),
   copyWebpackPlugin = require('copy-webpack-plugin'),
   htmlWebpackPlugin = require('html-webpack-plugin'),
+  scriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin'),
   loaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin'),
   normalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplacementPlugin');
 
@@ -34,8 +35,23 @@ module.exports = function(options) {
      * See: http://webpack.github.io/docs/configuration.html#entry
      */
     entry: {
-      'polyfills': $$.root('./src/polyfills.ts'),
-      'app': $$.root(`./build/main${isProd ? '-prod' : ''}.ts`)
+      'polyfills': $$.root('src/polyfills.ts'),
+      'app': $$.root(`build/main${isProd ? '-prod' : ''}.ts`)
+    },
+
+    /**
+     * Options affecting the output of the compilation.
+     *
+     * See: http://webpack.github.io/docs/configuration.html#output
+     */
+    output: {
+      /**
+       * The output directory as absolute path (required).
+       *
+       * See: http://webpack.github.io/docs/configuration.html#output-path
+       */
+      path: $$.root('public/assets'),
+      publicPath: 'assets/'
     },
 
     /**
@@ -53,8 +69,8 @@ module.exports = function(options) {
 
       // An array of directory names to be resolved to the current directory
       modules: [
-        $$.root('./build'),
-        $$.root('./node_modules')
+        $$.root('build'),
+        $$.root('node_modules')
       ]
     },
 
@@ -73,7 +89,7 @@ module.exports = function(options) {
           test: /\.ts$/,
           use: 'tslint-loader',
           exclude: [
-            $$.root('./node_modules'),
+            $$.root('node_modules'),
             /\.(ngfactory|ngstyle)\.ts$/
           ]
         },
@@ -100,7 +116,7 @@ module.exports = function(options) {
           ],
           exclude: [
             /\.(spec|e2e)\.ts$/,
-            $$.root('./e2e')
+            $$.root('e2e')
           ]
         },
 
@@ -123,7 +139,7 @@ module.exports = function(options) {
         {
           test: /\.css$/,
           use: ['to-string-loader', 'css-loader'],
-          exclude: [$$.root('./build/index.html')]
+          exclude: [$$.root('build/index.html')]
         },
 
         /**
@@ -135,7 +151,7 @@ module.exports = function(options) {
         {
           test: /\.html$/,
           use: 'html-loader',
-          exclude: [$$.root('./build/index.html')]
+          exclude: [$$.root('build/index.html')]
         },
 
         /**
@@ -172,10 +188,10 @@ module.exports = function(options) {
       new contextReplacementPlugin(
         // fix the warning in ./~/@angular/core/src/linker/system_js_ng_module_factory_loader.js
         /angular([\\\/])core([\\\/])(esm([\\\/])src|src)([\\\/])linker/,
-        $$.root('./build')
+        $$.root('build')
       ),
 
-      /*
+      /**
        * Plugin: CopyWebpackPlugin
        * Description: Copy files and directories in webpack.
        *
@@ -186,15 +202,15 @@ module.exports = function(options) {
       new copyWebpackPlugin([
         {
           from: './build/assets/config.json',
-          to: './assets/config.json'
+          to: './config.json'
         },
         {
           from: './build/assets/i18n/en.json',
-          to: './assets/i18n/en.json'
+          to: './i18n/en.json'
         },
         {
           from: './build/assets/i18n/tr.json',
-          to: './assets/i18n/tr.json'
+          to: './i18n/tr.json'
         }
       ]),
 
@@ -207,8 +223,19 @@ module.exports = function(options) {
        * See: https://github.com/ampedandwired/html-webpack-plugin
        */
       new htmlWebpackPlugin({
-        template: $$.root('./build/index.html'),
+        template: $$.root('build/index.html'),
         chunksSortMode: 'dependency'
+      }),
+
+      /**
+       * Plugin: ScriptExtHtmlWebpackPlugin
+       * Description: Enhances html-webpack-plugin functionality
+       * with different deployment options for your scripts including:
+       *
+       * See: https://github.com/numical/script-ext-html-webpack-plugin
+       */
+      new scriptExtHtmlWebpackPlugin({
+        defaultAttribute: 'defer'
       }),
 
       /**
@@ -227,23 +254,23 @@ module.exports = function(options) {
       // Fix Angular 2
       new normalModuleReplacementPlugin(
         /facade([\\\/])async/,
-        $$.root('./node_modules/@angular/core/src/facade/async.js')
+        $$.root('node_modules/@angular/core/src/facade/async.js')
       ),
       new normalModuleReplacementPlugin(
         /facade([\\\/])collection/,
-        $$.root('./node_modules/@angular/core/src/facade/collection.js')
+        $$.root('node_modules/@angular/core/src/facade/collection.js')
       ),
       new normalModuleReplacementPlugin(
         /facade([\\\/])errors/,
-        $$.root('./node_modules/@angular/core/src/facade/errors.js')
+        $$.root('node_modules/@angular/core/src/facade/errors.js')
       ),
       new normalModuleReplacementPlugin(
         /facade([\\\/])lang/,
-        $$.root('./node_modules/@angular/core/src/facade/lang.js')
+        $$.root('node_modules/@angular/core/src/facade/lang.js')
       ),
       new normalModuleReplacementPlugin(
         /facade([\\\/])math/,
-        $$.root('./node_modules/@angular/core/src/facade/math.js')
+        $$.root('node_modules/@angular/core/src/facade/math.js')
       )
     ],
 
