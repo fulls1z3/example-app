@@ -1,4 +1,4 @@
-﻿/**
+/**
  * When testing with webpack and ES6, we have to do some extra
  * things to get testing to work right. Because we are gonna write tests
  * in ES6 too, we have to compile those as well. That's handled in

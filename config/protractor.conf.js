@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Helpers & dependencies
  */
 require('ts-node/register');

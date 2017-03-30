@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Helpers & dependencies
  */
 const webpackConfig = require('./webpack.test.js')({env: 'test'});

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Dependencies
  */
 const gulp = require('gulp'),

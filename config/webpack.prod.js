@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Webpack helpers & dependencies
  */
 const $$ = require('./webpack-helpers'),
