@@ -12,7 +12,7 @@ import { I18NRouterService } from '@nglibs/i18n-router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = '@nglibs/example app works!';
+  title = '@nglibs/example-app works!';
 
   constructor(private config: ConfigService,
               private i18nRouter: I18NRouterService,
