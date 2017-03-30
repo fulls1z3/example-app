@@ -14,7 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = '@nglibs/example app works!';
+  title = '@nglibs/example-app works!';
 
   constructor(private readonly config: ConfigService,
               private readonly translate: TranslateService,

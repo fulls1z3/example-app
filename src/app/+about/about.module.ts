@@ -1,6 +1,6 @@
 // angular
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 // libs
 import { I18NRouterModule } from '@nglibs/i18n-router';
