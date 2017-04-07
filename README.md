@@ -1,10 +1,12 @@
 # @nglibs example application
 
+> Please support this project by simply putting a Github star. Share this library with friends on Twitter and everywhere else you can.
+
 Example application utilizing @nglibs utilities, showcasing common patterns and best practices. You can find the live app [here](https://nglibs-example-app.azurewebsites.net).
 
 This application uses [@nglibs/config](https://github.com/nglibs/config) to fetch the configuration settings loaded during application initialization; [@nglibs/meta](https://github.com/nglibs/meta) to update the page title & meta tags every time the route changes; [@nglibs/i18n-router](https://github.com/nglibs/i18n-router) to intercept Router initialization and translates each `path` and `redirectTo` property of Routes; [@nglibs/i18n-router-config-loader](https://github.com/nglibs/i18n-router-config-loader) to load route translations using `@nglibs/config`.
 
-Built with `@angular v2.4.0`, bundled with `gulp v4.0` and `webpack v2.3.2`.
+Built with `@angular v2.4.0`, bundled with `gulp v4.0` and `webpack v2.3.3`.
 
 ## Included
 
@@ -52,6 +54,5 @@ Copyright (c) 2017 [Burak Tasci]
 [@nglibs/i18n-router]: https://github.com/nglibs/i18n-router
 [@nglibs/i18n-router-config-loader]: https://github.com/nglibs/i18n-router-config-loader
 [ng-router-loader]: https://github.com/shlomiassaf/ng-router-loader
-[forRoot]: https://angular.io/docs/ts/latest/guide/ngmodule.html#!#core-for-root
-[AoT compilation]: https://angular.io/docs/ts/latest/cookbook/aot-compiler.html
+
 [Burak Tasci]: http://www.buraktasci.com
