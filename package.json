@@ -51,7 +51,7 @@
 
     "lodash": "^4.17.4",
     "@nglibs/config": "^0.2.0-rc.4",
-    "@nglibs/meta": "^0.2.0-rc.4",
+    "@nglibs/meta": "~0.4.0-rc.1",
     "@nglibs/i18n-router": "~0.4.0-beta.1",
     "@nglibs/i18n-router-config-loader": "^0.2.0-rc.2",
     "@ngx-translate/core": "^6.0.1",
