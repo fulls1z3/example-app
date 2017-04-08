@@ -1,8 +1,7 @@
 // angular
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { Http, HttpModule } from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 
 // libs
@@ -11,19 +10,22 @@ import { ConfigModule, ConfigLoader, ConfigHttpLoader, ConfigService } from '@ng
 import { MetaModule, MetaLoader, MetaStaticLoader } from '@nglibs/meta';
 import { I18NRouterModule, I18NRouterLoader, I18N_ROUTER_PROVIDERS, RAW_ROUTES } from '@nglibs/i18n-router';
 import { I18NRouterConfigLoader } from '@nglibs/i18n-router-config-loader';
+import { TranslateModule, TranslateService, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-// module
+// routes & components
 import { routes } from './app.routes';
 import { AppComponent } from './app.component';
 import { ChangeLanguageComponent } from './change-language.component';
 
 // for AoT compilation
 export function configFactory(http: Http): ConfigLoader {
-  return new ConfigHttpLoader(http, './config.json');
+  return new ConfigHttpLoader(http, './assets/config.json');
 }
 
-export function metaFactory(config: ConfigService): MetaLoader {
+export function metaFactory(config: ConfigService, translate: TranslateService): MetaLoader {
   return new MetaStaticLoader({
+    callback: (key: string) => translate.get(key),
     pageTitlePositioning: config.getSettings().seo.pageTitlePositioning,
     pageTitleSeparator: config.getSettings().seo.pageTitleSeparator,
     applicationName: config.getSettings().system.applicationName,
@@ -44,6 +46,10 @@ export function i18nRouterFactory(config: ConfigService, rawRoutes: Routes): I18
   return new I18NRouterConfigLoader(config, rawRoutes, 'routes');
 }
 
+export function translateFactory(http: Http): TranslateLoader {
+  return new TranslateHttpLoader(http, './assets/i18n/');
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,16 +57,35 @@ export function i18nRouterFactory(config: ConfigService, rawRoutes: Routes): I18
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     HttpModule,
     RouterModule.forRoot(routes),
-    ConfigModule.forRoot({ provide: ConfigLoader, useFactory: (configFactory), deps: [Http] }),
-    MetaModule.forRoot({ provide: MetaLoader, useFactory: (metaFactory), deps: [ConfigService] }),
+    ConfigModule.forRoot({
+      provide: ConfigLoader,
+      useFactory: (configFactory),
+      deps: [Http]
+    }),
+    MetaModule.forRoot({
+      provide: MetaLoader,
+      useFactory: (metaFactory),
+      deps: [ConfigService, TranslateService]
+    }),
     I18NRouterModule.forRoot(routes, [
-      { provide: I18NRouterLoader, useFactory: (i18nRouterFactory), deps: [ConfigService, RAW_ROUTES] }
-    ])
+      {
+        provide: I18NRouterLoader,
+        useFactory: (i18nRouterFactory),
+        deps: [ConfigService, RAW_ROUTES]
+      }
+    ]),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: translateFactory,
+        deps: [Http]
+      }
+    })
   ],
   providers: [I18N_ROUTER_PROVIDERS],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -1,7 +1,7 @@
 // angular
 import { Routes } from '@angular/router';
 
-// module
+// components
 import { HomeComponent } from './home.component';
 
 export const routes: Routes = [
@@ -10,9 +10,9 @@ export const routes: Routes = [
     component: HomeComponent,
     data: {
       meta: {
-        title: '',
+        title: 'PUBLIC.HOME.PAGE_TITLE',
         override: true,
-        description: 'Welcome to @nglibs/example'
+        description: 'PUBLIC.HOME.META_DESCRIPTION'
       }
     }
   }
