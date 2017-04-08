@@ -1,7 +1,7 @@
 // angular
 import { Routes } from '@angular/router';
 
-// module
+// components
 import { AboutComponent } from './about.component';
 import { AboutUsComponent } from './about-us.component';
 import { AboutBananaComponent } from './about-banana.component';
@@ -14,7 +14,7 @@ export const routes: Routes = [
     data: {
       meta: {
         title: 'PUBLIC.ABOUT.PAGE_TITLE',
-        description: 'PUBLIC.ABOUT.META_DESC'
+        description: 'PUBLIC.ABOUT.META_DESCRIPTION'
       }
     }
   },
@@ -24,7 +24,7 @@ export const routes: Routes = [
     data: {
       meta: {
         title: 'PUBLIC.ABOUT_US.PAGE_TITLE',
-        description: 'PUBLIC.ABOUT_US.META_DESC'
+        description: 'PUBLIC.ABOUT_US.META_DESCRIPTION'
       }
     }
   },
@@ -34,7 +34,7 @@ export const routes: Routes = [
     data: {
       meta: {
         title: 'PUBLIC.ABOUT_BANANA.PAGE_TITLE',
-        description: 'PUBLIC.ABOUT_BANANA.META_DESC'
+        description: 'PUBLIC.ABOUT_BANANA.META_DESCRIPTION'
       }
     }
   },
@@ -44,7 +44,7 @@ export const routes: Routes = [
     data: {
       meta: {
         title: 'PUBLIC.ABOUT_APPLE_PEAR.PAGE_TITLE',
-        description: 'PUBLIC.ABOUT_APPLE_PEAR.META_DESC'
+        description: 'PUBLIC.ABOUT_APPLE_PEAR.META_DESCRIPTION'
       }
     }
   }

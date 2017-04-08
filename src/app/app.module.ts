@@ -1,8 +1,7 @@
 // angular
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { Http, HttpModule } from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 
 // libs
@@ -11,14 +10,13 @@ import { ConfigModule, ConfigLoader, ConfigHttpLoader, ConfigService } from '@ng
 import { MetaModule, MetaLoader, MetaStaticLoader } from '@nglibs/meta';
 import { I18NRouterModule, I18NRouterLoader, I18N_ROUTER_PROVIDERS, RAW_ROUTES } from '@nglibs/i18n-router';
 import { I18NRouterConfigLoader } from '@nglibs/i18n-router-config-loader';
-import { TranslateService, TranslateLoader } from '@ngx-translate/core';
+import { TranslateModule, TranslateService, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-// module
+// routes & components
 import { routes } from './app.routes';
 import { AppComponent } from './app.component';
 import { ChangeLanguageComponent } from './change-language.component';
-import { TranslateModule } from '@ngx-translate/core';
 
 // for AoT compilation
 export function configFactory(http: Http): ConfigLoader {
@@ -27,7 +25,6 @@ export function configFactory(http: Http): ConfigLoader {
 
 export function metaFactory(config: ConfigService, translate: TranslateService): MetaLoader {
   return new MetaStaticLoader({
-    defer: true,
     callback: (key: string) => translate.get(key),
     pageTitlePositioning: config.getSettings().seo.pageTitlePositioning,
     pageTitleSeparator: config.getSettings().seo.pageTitleSeparator,
@@ -60,7 +57,6 @@ export function translateFactory(http: Http): TranslateLoader {
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     HttpModule,
     RouterModule.forRoot(routes),
     ConfigModule.forRoot({

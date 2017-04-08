@@ -14,7 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = '@nglibs/example-app works!';
+  title: string;
 
   constructor(private readonly config: ConfigService,
               private readonly translate: TranslateService,
@@ -23,13 +23,13 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.title = '@nglibs/example-app works!';
     const defaultLanguage = this.config.getSettings().i18n.defaultLanguage;
 
     // add available languages & set default language
     this.translate.addLangs(<Array<string>>_.map(this.config.getSettings().i18n.availableLanguages, 'code'));
     this.translate.setDefaultLang(defaultLanguage.code);
 
-    this.meta.init();
     this.meta.setTag('og:locale', defaultLanguage.culture);
 
     this.i18nRouter.init();
@@ -39,9 +39,7 @@ export class AppComponent implements OnInit {
 
   private setLanguage(language: any): void {
     this.translate.use(language.code).subscribe(() => {
-      // refresh meta tags
-      this.meta.refresh();
-      this.meta.setTag('og:locale', language.culture, false);
+      this.meta.setTag('og:locale', language.culture);
     });
 
     this.i18nRouter.changeLanguage(language.code);

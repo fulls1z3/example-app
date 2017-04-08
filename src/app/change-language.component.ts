@@ -32,9 +32,7 @@ export class ChangeLanguageComponent implements OnInit {
 
   private setLanguage(languageCode: string): void {
     this.translate.use(languageCode).subscribe(() => {
-      // refresh meta tags
-      this.meta.refresh();
-      this.meta.setTag('og:locale', languageCode, false);
+      this.meta.setTag('og:locale', languageCode);
     });
 
     this.i18nRouter.changeLanguage(languageCode);
