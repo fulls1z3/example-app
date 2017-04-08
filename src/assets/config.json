@@ -1,13 +1,13 @@
 {
   "system": {
     "applicationName": "APP_NAME",
-    "applicationUrl": "http://localhost:4200"
+    "applicationUrl": "http://nglibs-example-app.azurewebsites.net"
   },
   "seo": {
     "defaultPageTitle": "DEFAULT_TITLE",
     "pageTitlePositioning": 10,
     "pageTitleSeparator": " | ",
-    "defaultMetaDescription": "DEFAULT_DESC"
+    "defaultMetaDescription": "DEFAULT_META_DESCRIPTION"
   },
   "i18n": {
     "defaultLanguage": {
