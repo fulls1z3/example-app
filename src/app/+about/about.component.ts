@@ -1,11 +1,9 @@
 // angular
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  template: `@nglibs about page<br/>
+  template: `ng-seed about page<br/>
   This page provides a dummy overview of nothing`
 })
-export class AboutComponent implements OnInit {
-  ngOnInit(): void {
-  }
+export class AboutComponent {
 }
