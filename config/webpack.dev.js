@@ -1,13 +1,16 @@
 /**
  * Webpack helpers & dependencies
  */
+let settings = require('./build-config');
+
 const $$ = require('./webpack-helpers'),
   commonConfig = require('./webpack.common'),
   webpackMerge = require('webpack-merge'),
   webpackMergeDll = webpackMerge.strategy({plugins: 'replace'});
 
-const definePlugin = require('webpack/lib/DefinePlugin'),
-  dllBundlesPlugin = require('webpack-dll-bundles-plugin').DllBundlesPlugin,
+settings = $$.loadSettings(settings);
+
+const dllBundlesPlugin = require('webpack-dll-bundles-plugin').DllBundlesPlugin,
   commonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin'),
   addAssetHtmlPlugin = require('add-asset-html-webpack-plugin'),
   loaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
@@ -27,7 +30,7 @@ module.exports = webpackMerge(commonConfig({env: ENV}),
      * See: http://webpack.github.io/docs/configuration.html#devtool
      * See: https://github.com/webpack/docs/wiki/build-performance#sourcemaps
      */
-    devtool: 'cheap-module-source-map',
+    devtool: settings.webpack.devtool.DEV,
 
     /**
      * Options affecting the output of the compilation.
@@ -59,7 +62,7 @@ module.exports = webpackMerge(commonConfig({env: ENV}),
       chunkFilename: '[id].chunk.js',
 
       libraryTarget: 'var',
-      library: 'nglibs_[name]'
+      library: 'ng_seed_[name]'
     },
 
     /**
@@ -69,24 +72,6 @@ module.exports = webpackMerge(commonConfig({env: ENV}),
      */
     plugins: [
       /**
-       * Plugin: DefinePlugin
-       * Description: Define free variables.
-       * Useful for having development builds with debug logging or adding global constants.
-       *
-       * Environment helpers
-       *
-       * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
-       */
-      // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
-      new definePlugin({
-        'ENV': JSON.stringify(ENV),
-        'process.env': {
-          'ENV': JSON.stringify(ENV),
-          'NODE_ENV': JSON.stringify(ENV)
-        }
-      }),
-
-      /**
        * Plugin: DLLBundlesPlugin
        * Description: Bundles group of packages as DLLs
        *
@@ -94,40 +79,13 @@ module.exports = webpackMerge(commonConfig({env: ENV}),
        */
       new dllBundlesPlugin({
         bundles: {
-          polyfills: [
-            'core-js',
-            {
-              name: 'zone.js',
-              path: 'zone.js/dist/zone.js'
-            },
-            {
-              name: 'zone.js',
-              path: 'zone.js/dist/long-stack-trace-zone.js'
-            }
-          ],
-          vendor: [
-            '@angular/platform-browser',
-            '@angular/platform-browser-dynamic',
-            '@angular/core',
-            '@angular/common',
-            '@angular/forms',
-            '@angular/http',
-            '@angular/router',
-            '@angularclass/bootloader',
-            'rxjs',
-            'lodash',
-            '@nglibs/config',
-            '@nglibs/meta',
-            '@nglibs/i18n-router',
-            '@nglibs/i18n-router-config-loader',
-            '@ngx-translate/core',
-            '@ngx-translate/http-loader'
-          ]
+          polyfills: settings.webpack.bundles.polyfills,
+          vendor: settings.webpack.bundles.angular.concat(settings.webpack.bundles.vendor)
         },
-        dllDir: $$.root('build/dll'),
+        dllDir: $$.root(settings.paths.temp.dll),
         webpackConfig: webpackMergeDll(commonConfig({env: ENV}),
           {
-            devtool: 'cheap-module-source-map',
+            devtool: settings.webpack.devtool.DEV,
             plugins: []
           })
       }),
@@ -164,8 +122,8 @@ module.exports = webpackMerge(commonConfig({env: ENV}),
        * See: https://github.com/SimenB/add-asset-html-webpack-plugin
        */
       new addAssetHtmlPlugin([
-        {filepath: $$.root(`build/dll/${dllBundlesPlugin.resolveFile('polyfills')}`)},
-        {filepath: $$.root(`build/dll/${dllBundlesPlugin.resolveFile('vendor')}`)}
+        {filepath: $$.root(`${settings.paths.temp.dll}/${dllBundlesPlugin.resolveFile('polyfills')}`)},
+        {filepath: $$.root(`${settings.paths.temp.dll}/${dllBundlesPlugin.resolveFile('vendor')}`)}
       ]),
 
       /**
@@ -180,25 +138,6 @@ module.exports = webpackMerge(commonConfig({env: ENV}),
         }
       })
     ],
-
-    /**
-     * Webpack Development Server configuration
-     * Description: The webpack-dev-server is a little node.js Express server.
-     * The server emits information about the compilation state to the client,
-     * which reacts to those events.
-     *
-     * See: https://webpack.github.io/docs/webpack-dev-server.html
-     */
-    devServer: {
-      port: 'localhost',
-      host: '3000',
-      contentBase: './dist',
-      historyApiFallback: true,
-      watchOptions: {
-        aggregateTimeout: 300,
-        poll: 1000
-      }
-    },
 
     /**
      * Disable performance hints

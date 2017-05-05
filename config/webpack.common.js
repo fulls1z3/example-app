@@ -1,15 +1,18 @@
 /**
  * Webpack helpers & dependencies
  */
+let settings = require('./build-config');
 const $$ = require('./webpack-helpers');
 
-const checkerPlugin = require('awesome-typescript-loader').CheckerPlugin,
+settings = $$.loadSettings(settings);
+
+const definePlugin = require('webpack/lib/DefinePlugin'),
+  checkerPlugin = require('awesome-typescript-loader').CheckerPlugin,
   contextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin'),
   copyWebpackPlugin = require('copy-webpack-plugin'),
   htmlWebpackPlugin = require('html-webpack-plugin'),
   scriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin'),
-  loaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin'),
-  normalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplacementPlugin');
+  loaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 
 /**
  * Webpack configuration
@@ -18,6 +21,7 @@ const checkerPlugin = require('awesome-typescript-loader').CheckerPlugin,
  */
 module.exports = function(options) {
   const isProd = options.env === 'production';
+
   return {
     /**
      * Cache generated modules and chunks to improve performance for multiple incremental builds.
@@ -35,8 +39,8 @@ module.exports = function(options) {
      * See: http://webpack.github.io/docs/configuration.html#entry
      */
     entry: {
-      'polyfills': $$.root('src/polyfills.ts'),
-      'app': $$.root(`build/main${isProd ? '-prod' : ''}.ts`)
+      'polyfills': $$.root(`${settings.paths.src.root}/polyfills.ts`),
+      'app': $$.root(`${settings.paths.src.root}/main${isProd ? '-prod' : ''}.ts`)
     },
 
     /**
@@ -50,7 +54,7 @@ module.exports = function(options) {
        *
        * See: http://webpack.github.io/docs/configuration.html#output-path
        */
-      path: $$.root('public/assets'),
+      path: $$.root(settings.paths.public.assets),
       publicPath: 'assets/'
     },
 
@@ -69,8 +73,8 @@ module.exports = function(options) {
 
       // An array of directory names to be resolved to the current directory
       modules: [
-        $$.root('build'),
-        $$.root('node_modules')
+        $$.root(settings.paths.temp.build.root),
+        $$.root(settings.paths.NODE_MODULES),
       ]
     },
 
@@ -89,7 +93,7 @@ module.exports = function(options) {
           test: /\.ts$/,
           use: 'tslint-loader',
           exclude: [
-            $$.root('node_modules'),
+            $$.root(settings.paths.NODE_MODULES),
             /\.(ngfactory|ngstyle)\.ts$/
           ]
         },
@@ -115,8 +119,8 @@ module.exports = function(options) {
             'angular2-template-loader'
           ],
           exclude: [
-            /\.(spec|e2e)\.ts$/,
-            $$.root('e2e')
+            $$.root('e2e'),
+            /\.(spec|e2e)\.ts$/
           ]
         },
 
@@ -139,7 +143,7 @@ module.exports = function(options) {
         {
           test: /\.css$/,
           use: ['to-string-loader', 'css-loader'],
-          exclude: [$$.root('build/index.html')]
+          exclude: [$$.root(`${settings.paths.temp.build.root}/index.html`)]
         },
 
         /**
@@ -151,7 +155,7 @@ module.exports = function(options) {
         {
           test: /\.html$/,
           use: 'html-loader',
-          exclude: [$$.root('build/index.html')]
+          exclude: [$$.root(`${settings.paths.temp.build.root}/index.html`)]
         },
 
         /**
@@ -171,6 +175,26 @@ module.exports = function(options) {
      */
     plugins: [
       /**
+       * Plugin: DefinePlugin
+       * Description: Define free variables.
+       * Useful for having development builds with debug logging or adding global constants.
+       *
+       * Environment helpers
+       *
+       * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
+       */
+      // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
+      new definePlugin({
+        'ENV': JSON.stringify(options.env),
+        'process.env': {
+          'ENV': JSON.stringify(options.env),
+          'NODE_ENV': JSON.stringify(options.env),
+          'HOST': JSON.stringify(settings.host),
+          'PORT': JSON.stringify(settings.port)
+        }
+      }),
+
+      /**
        * Plugin: ForkCheckerPlugin
        * Description: Do type checking in a separate process, so webpack don't need to wait.
        *
@@ -188,7 +212,7 @@ module.exports = function(options) {
       new contextReplacementPlugin(
         // fix the warning in ./~/@angular/core/src/linker/system_js_ng_module_factory_loader.js
         /angular([\\\/])core([\\\/])(esm([\\\/])src|src)([\\\/])linker/,
-        $$.root('build')
+        $$.root(settings.paths.temp.build.root)
       ),
 
       /**
@@ -201,15 +225,15 @@ module.exports = function(options) {
        */
       new copyWebpackPlugin([
         {
-          from: './build/assets/config.json',
+          from: `${$$.root(settings.paths.temp.build.assets)}/config.json`,
           to: './config.json'
         },
         {
-          from: './build/assets/i18n/en.json',
+          from: `${$$.root(settings.paths.temp.build.assets)}/i18n/en.json`,
           to: './i18n/en.json'
         },
         {
-          from: './build/assets/i18n/tr.json',
+          from: `${$$.root(settings.paths.temp.build.assets)}/i18n/tr.json`,
           to: './i18n/tr.json'
         }
       ]),
@@ -223,7 +247,7 @@ module.exports = function(options) {
        * See: https://github.com/ampedandwired/html-webpack-plugin
        */
       new htmlWebpackPlugin({
-        template: $$.root('build/index.html'),
+        template: $$.root(`${settings.paths.temp.build.root}/index.html`),
         chunksSortMode: 'dependency'
       }),
 
@@ -249,29 +273,7 @@ module.exports = function(options) {
             failOnHint: false
           }
         }
-      }),
-
-      // Fix Angular 2
-      new normalModuleReplacementPlugin(
-        /facade([\\\/])async/,
-        $$.root('node_modules/@angular/core/src/facade/async.js')
-      ),
-      new normalModuleReplacementPlugin(
-        /facade([\\\/])collection/,
-        $$.root('node_modules/@angular/core/src/facade/collection.js')
-      ),
-      new normalModuleReplacementPlugin(
-        /facade([\\\/])errors/,
-        $$.root('node_modules/@angular/core/src/facade/errors.js')
-      ),
-      new normalModuleReplacementPlugin(
-        /facade([\\\/])lang/,
-        $$.root('node_modules/@angular/core/src/facade/lang.js')
-      ),
-      new normalModuleReplacementPlugin(
-        /facade([\\\/])math/,
-        $$.root('node_modules/@angular/core/src/facade/math.js')
-      )
+      })
     ],
 
     /**

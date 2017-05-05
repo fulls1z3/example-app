@@ -1,7 +1,10 @@
 /**
  * Webpack helpers & dependencies
  */
+let settings = require('./build-config');
 const $$ = require('./webpack-helpers');
+
+settings = $$.loadSettings(settings);
 
 const definePlugin = require('webpack/lib/DefinePlugin'),
   contextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin'),
@@ -22,7 +25,7 @@ module.exports = function () {
      * Do not change, leave as is or it wont work.
      * See: https://github.com/webpack/karma-webpack#source-maps
      */
-    devtool: 'inline-source-map',
+    devtool: settings.webpack.devtool.TEST,
 
     /**
      * Options affecting the resolving of modules.
@@ -41,8 +44,8 @@ module.exports = function () {
        * Make sure root is ./build
        */
       modules: [
-        $$.root('build'),
-        $$.root('node_modules')
+        $$.root(settings.paths.temp.build.root),
+        $$.root(settings.paths.NODE_MODULES),
       ]
     },
 
@@ -65,8 +68,8 @@ module.exports = function () {
           use: 'source-map-loader',
           exclude: [
             // these packages have problems with their sourcemaps
-            $$.root('node_modules/rxjs'),
-            $$.root('node_modules/@angular')
+            $$.root(`${settings.paths.NODE_MODULES}/rxjs`),
+            $$.root(`${settings.paths.NODE_MODULES}/@angular`)
           ]
         },
 
@@ -104,7 +107,7 @@ module.exports = function () {
         {
           test: /\.json$/,
           use: 'json-loader',
-          exclude: [$$.root('build/index.html')]
+          exclude: [$$.root(`${settings.paths.temp.build.root}/index.html`)]
         },
 
         /**
@@ -116,7 +119,7 @@ module.exports = function () {
         {
           test: /\.css$/,
           use: ['to-string-loader', 'css-loader'],
-          exclude: [$$.root('build/index.html')]
+          exclude: [$$.root(`${settings.paths.temp.build.root}/index.html`)]
         },
 
         /**
@@ -128,7 +131,7 @@ module.exports = function () {
         {
           test: /\.html$/,
           use: 'raw-loader',
-          exclude: [$$.root('build/index.html')]
+          exclude: [$$.root(`${settings.paths.temp.build.root}/index.html`)]
         },
 
         /**
@@ -141,10 +144,10 @@ module.exports = function () {
           enforce: 'post',
           test: /\.(js|ts)$/,
           use: 'istanbul-instrumenter-loader?esModules',
-          include: [$$.root('build/index.html')],
+          include: $$.root(settings.paths.temp.build.root),
           exclude: [
-            /\.(e2e|spec|d)\.ts$/,
-            /node_modules/
+            $$.root(settings.paths.NODE_MODULES),
+            /\.(e2e|spec|d)\.ts$/
           ]
         }
       ]
@@ -184,7 +187,7 @@ module.exports = function () {
       new contextReplacementPlugin(
         // fix the warning in ./~/@angular/core/src/linker/system_js_ng_module_factory_loader.js
         /angular([\\\/])core([\\\/])(esm([\\\/])src|src)([\\\/])linker/,
-        $$.root('build')
+        $$.root(settings.paths.temp.build.root)
       ),
 
       /**

@@ -3,17 +3,13 @@
 /**
  * Gulp helpers & dependencies
  */
+let settings = require('./build-config.json');
+
 const gulp = require('gulp'),
-  $ = require('gulp-load-plugins')({
-    pattern: [
-      'gulp-*',
-      'async',
-      'rimraf',
-      'webpack',
-      'webpack-dev-server'
-    ]
-  }),
+  $ = require('gulp-load-plugins')(settings.plugins.pluginloader),
   $$ = require('./gulp-helpers');
+
+settings = $$.loadSettings(settings);
 
 /**
  * Define & include tasks
@@ -50,16 +46,16 @@ aot.compile.displayName = 'compile:ngc';
  */
 const clean = {
   build: function(done) {
-    $.rimraf('./build', done);
+    $.rimraf(`${settings.paths.temp.build.root}/**`, done);
   },
   'public': function(done) {
-    $.rimraf(`./public`, done);
+    $.rimraf(`${settings.paths.public.root}/**`, done);
   },
   artifacts: function(done) {
-    $.rimraf('./index.html', done);
+    $.rimraf(`${settings.paths.public.assets}/index.html`, done);
   },
   temp: function(done) {
-    $.rimraf('./.temp', done);
+    $.rimraf(settings.paths.temp.root, done);
   }
 };
 
@@ -74,19 +70,15 @@ clean.temp.displayName = 'clean:temp';
 const assets = {
   css: {
     copy: function(done) {
-      gulp.src([
-        './src/**/*.css'
-      ])
-        .pipe(gulp.dest('./build'))
+      gulp.src(`${settings.paths.src.root}/**/*.css`)
+        .pipe(gulp.dest(settings.paths.temp.build.root))
         .on('end', done);
     }
   },
   assets: {
     copy: function(done) {
-      gulp.src([
-        './src/assets/**/*.json'
-      ])
-        .pipe(gulp.dest('./build/assets'))
+      gulp.src(`${settings.paths.src.assets}/**/*.json`)
+        .pipe(gulp.dest(settings.paths.temp.build.assets))
         .on('end', done);
     }
   },
@@ -109,15 +101,15 @@ assets.copy.displayName = 'copy:assets';
 const views = {
   build: {
     copy: function(done) {
-      gulp.src('./src/**/*.html')
-        .pipe(gulp.dest('./build'))
+      gulp.src(`${settings.paths.src.root}/**/*.html`)
+        .pipe(gulp.dest(settings.paths.temp.build.root))
         .on('end', done);
     }
   },
   assets: {
     copy: function(done) {
-      gulp.src('./public/assets/index.html')
-        .pipe(gulp.dest('./public'))
+      gulp.src(`${settings.paths.public.assets}/index.html`)
+        .pipe(gulp.dest(settings.paths.public.root))
         .on('end', done);
     }
   }
@@ -132,15 +124,15 @@ views.assets.copy.displayName = 'copy:index.html';
 const ts = {
   copy: function(done) {
     gulp.src([
-      './src/**/*.ts',
-      '!./environments/**/*.ts'
+      `${settings.paths.src.root}/**/*.ts`,
+      `!${settings.paths.src.root}/environments/**/*.ts`
     ])
-      .pipe(gulp.dest('./build'))
+      .pipe(gulp.dest(settings.paths.temp.build.root))
       .on('end', done);
   },
   lint: function(done) {
     gulp.src([
-      './src/**/*.ts'
+      `${settings.paths.src.root}/**/*.ts`
     ])
       .pipe($$.tslint())
       .on('end', done);
@@ -261,9 +253,9 @@ gulp.task('test',
   ));
 
 /**
- * Task: review:ts
+ * Task: review:tslint
  */
-gulp.task('review:ts',
+gulp.task('review:tslint',
   gulp.series(
     tasks.ts.lint
   ));

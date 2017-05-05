@@ -71,6 +71,7 @@ const webpackFormatter = function (err, stats, callback, settings) {
  * Exports
  */
 exports.root = $$.root;
+exports.loadSettings = $$.loadSettings;
 exports.done = done;
 exports.tslint = tslint;
 exports.webpackFormatter = webpackFormatter;
