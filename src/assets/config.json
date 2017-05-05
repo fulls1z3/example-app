@@ -1,7 +1,7 @@
 {
   "system": {
-    "applicationName": "@nglibs example app",
-    "applicationUrl": "http://nglibs-example-app.azurewebsites.net"
+    "applicationName": "APP_NAME",
+    "applicationUrl": "https://ng-seed-spa.azurewebsites.net"
   },
   "seo": {
     "defaultPageTitle": "DEFAULT_TITLE",
