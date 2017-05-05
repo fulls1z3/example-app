@@ -1,16 +1,20 @@
 /**
  * Webpack helpers & dependencies
  */
+let settings = require('./build-config');
+
 const $$ = require('./webpack-helpers'),
   commonConfig = require('./webpack.common'),
   webpackMerge = require('webpack-merge');
 
+settings = $$.loadSettings(settings);
+
 const noEmitOnErrorsPlugin = require('webpack/lib/NoEmitOnErrorsPlugin'),
   optimizeJsPlugin = require('optimize-js-plugin'),
-  definePlugin = require('webpack/lib/DefinePlugin'),
   commonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin'),
   uglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin'),
   // compressionPlugin = require('compression-webpack-plugin'),
+  normalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplacementPlugin'),
   loaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 
 const ENV = process.env.ENV = process.env.NODE_ENV = 'production';
@@ -28,7 +32,7 @@ module.exports = webpackMerge(commonConfig({env: ENV}),
      * See: http://webpack.github.io/docs/configuration.html#devtool
      * See: https://github.com/webpack/docs/wiki/build-performance#sourcemaps
      */
-    //devtool: 'source-map',
+    // devtool: settings.webpack.devtool.PROD,
 
     /**
      * Options affecting the output of the compilation.
@@ -88,24 +92,6 @@ module.exports = webpackMerge(commonConfig({env: ENV}),
       }),
 
       /**
-       * Plugin: DefinePlugin
-       * Description: Define free variables.
-       * Useful for having development builds with debug logging or adding global constants.
-       *
-       * Environment helpers
-       *
-       * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
-       */
-      // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
-      new definePlugin({
-        'ENV': JSON.stringify(ENV),
-        'process.env': {
-          'ENV': JSON.stringify(ENV),
-          'NODE_ENV': JSON.stringify(ENV)
-        }
-      }),
-
-      /**
        * Plugin: CommonsChunkPlugin
        * Description: Shares common code between the pages.
        * It identifies common modules and put them into a commons chunk.
@@ -158,6 +144,28 @@ module.exports = webpackMerge(commonConfig({env: ENV}),
       //    regExp: /\.css$|\.html$|\.js$|\.map$/,
       //    threshold: 2 * 1024
       //}),
+
+      // Fix Angular
+      new normalModuleReplacementPlugin(
+        /facade([\\\/])async/,
+        $$.root(`${settings.paths.NODE_MODULES}/@angular/core/src/facade/async.js`)
+      ),
+      new normalModuleReplacementPlugin(
+        /facade([\\\/])collection/,
+        $$.root(`${settings.paths.NODE_MODULES}/@angular/core/src/facade/collection.js`)
+      ),
+      new normalModuleReplacementPlugin(
+        /facade([\\\/])errors/,
+        $$.root(`${settings.paths.NODE_MODULES}/@angular/core/src/facade/errors.js`)
+      ),
+      new normalModuleReplacementPlugin(
+        /facade([\\\/])lang/,
+        $$.root(`${settings.paths.NODE_MODULES}/@angular/core/src/facade/lang.js`)
+      ),
+      new normalModuleReplacementPlugin(
+        /facade([\\\/])math/,
+        $$.root(`${settings.paths.NODE_MODULES}/@angular/core/src/facade/math.js`)
+      ),
 
       /**
        * Plugin LoaderOptionsPlugin (experimental)

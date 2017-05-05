@@ -32,7 +32,7 @@
   "awesomeTypescriptLoaderOptions": {
     "useTranspileModule": true,
     "useCache": true,
-    "cacheDirectory": "./build/.awcache",
+    "cacheDirectory": "./.temp/.awcache",
     "usePrecompiledFiles": true,
     "useWebpackText": true
   },

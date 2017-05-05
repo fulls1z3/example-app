@@ -1,0 +1,90 @@
+﻿{
+  "quick": true,
+  "debug": true,
+  "host": "localhost",
+  "port": 1337,
+  "root": ".",
+  "paths": {
+    "config": "{{root}}/config",
+    "src": {
+      "root": "{{root}}/src",
+      "app": "{{src_root}}/app",
+      "assets": "{{src_root}}/assets",
+      "sass": "{{src_root}}/assets/sass"
+    },
+    "public": {
+      "root": "{{root}}/public",
+      "assets": "{{public_root}}/assets"
+    },
+    "server": "{{root}}/.server",
+    "temp": {
+      "root": "{{root}}/.temp",
+      "build": {
+        "root": "{{temp_root}}/build",
+        "assets": "{{build_root}}/assets"
+      },
+      "dll": "{{temp_root}}/dll"
+    },
+    "NODE_MODULES": "{{root}}/node_modules"
+  },
+  "plugins": {
+    "pluginloader": {
+      "pattern": [
+        "gulp-*",
+        "async",
+        "rimraf",
+        "webpack"
+      ]
+    },
+    "debugger": {
+      "title": ""
+    },
+    "autoprefixer": {
+      "browsers": [
+        "last 2 versions",
+        "> 5%",
+        "Firefox ESR"
+      ]
+    }
+  },
+  "webpack": {
+    "devtool": {
+      "DEV": "cheap-module-source-map",
+      "PROD": "source-map",
+      "TEST": "inline-source-map"
+    },
+    "bundles": {
+      "polyfills": [
+        "core-js",
+        {
+          "name": "zone.js",
+          "path": "zone.js/dist/zone.js"
+        },
+        {
+          "name": "zone.js",
+          "path": "zone.js/dist/long-stack-trace-zone.js"
+        }
+      ],
+      "angular": [
+        "@angular/platform-browser",
+        "@angular/platform-browser-dynamic",
+        "@angular/core",
+        "@angular/common",
+        "@angular/forms",
+        "@angular/http",
+        "@angular/router",
+        "@angularclass/bootloader",
+        "rxjs"
+      ],
+      "vendor": [
+        "@ngx-config/core",
+        "@ngx-config/http-loader",
+        "@nglibs/meta",
+        "@nglibs/i18n-router",
+        "@nglibs/i18n-router-config-loader",
+        "@ngx-translate/core",
+        "@ngx-translate/http-loader"
+      ]
+    }
+  }
+}
