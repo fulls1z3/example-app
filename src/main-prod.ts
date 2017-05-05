@@ -9,8 +9,9 @@ import { bootloader } from '@angularclass/bootloader';
 import { AppModuleNgFactory } from './app/app.module.ngfactory';
 
 export function main(): any {
-    enableProdMode();
-    return platformBrowser().bootstrapModuleFactory(AppModuleNgFactory);
+  enableProdMode();
+
+  return platformBrowser().bootstrapModuleFactory(AppModuleNgFactory);
 }
 
 bootloader(main);
