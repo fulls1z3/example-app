@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "@nglibs/example-app"
+    "name": "@ng-seed/spa"
   },
   "apps": [
     {
