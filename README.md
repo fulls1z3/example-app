@@ -9,7 +9,7 @@
 - [Webpack DLL]s to speed up development builds.
 - [AoT compilation] for rapid page loads on production builds (*using **`ngc`***).
 - Tree-shaking the production builds with [fulls1z3/webpack].
-- ~Hot Module Replacement with [Webpack] and [@angularclass/hmr] and [@angularclass/hmr-loader].~
+- Hot Module Replacement with [Webpack] and [webpack-hot-middleware].
 - Both inline and external SCSS compilation.
 - Lazy loading of modules.
 - Uses [@ngx-config] for configuration management.
@@ -46,6 +46,8 @@ npm run build:prod
 
 # start the server
 npm run serve
+# start the server (with HMR support)
+npm run serve:hmr
 ```
 
 Navigate to `http://localhost:1337` in your browser.
@@ -61,8 +63,7 @@ Copyright (c) 2017 [Burak Tasci]
 [Webpack DLL]: https://robertknight.github.io/posts/webpack-dll-plugins
 [AoT compilation]: https://angular.io/docs/ts/latest/cookbook/aot-compiler.html
 [fulls1z3/webpack]: https://github.com/fulls1z3/webpack
-[@angularclass/hmr]: https://github.com/angularclass/angular2-hmr
-[@angularclass/hmr-loader]: https://github.com/AngularClass/angular2-hmr-loader
+[webpack-hot-middleware]: https://github.com/glenjamin/webpack-hot-middleware
 [@ngx-config]: https://github.com/ngx-config/core
 [@ngx-cache]: https://github.com/ngx-cache/core
 [@ngx-translate]: https://github.com/ngx-translate/core
