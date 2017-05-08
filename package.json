@@ -19,6 +19,7 @@
     "build:dev": "gulp clean && gulp build:dev",
     "build:prod": "gulp clean && gulp build:prod",
     "serve": "nodemon ./.server/spa-server.js",
+    "serve:hmr": "node ./.server/spa-server.hmr.js",
     "test": "karma start"
   },
   "dependencies": {
@@ -66,6 +67,7 @@
     "gulp-tslint": "^8.0.0",
     "webpack": "fulls1z3/webpack#v2.5.0-harmony",
     "webpack-merge": "^4.1.0",
+    "webpack-hot-middleware": "^2.18.0",
 
     "tslint-loader": "^3.5.3",
     "awesome-typescript-loader": "^3.1.3",
