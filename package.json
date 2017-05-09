@@ -38,14 +38,13 @@
     "zone.js": "^0.8.4",
 
     "lodash": "^4.17.4",
-    "@ngx-config/core": "^0.2.0-rc.5",
-    "@ngx-config/http-loader": "^0.2.0-rc.1",
-    "@nglibs/meta": "~0.4.0-rc.1",
-    "@nglibs/i18n-router": "~0.4.0-beta.1",
-    "@nglibs/i18n-router-config-loader": "^0.2.0-rc.2",
-    "@ngx-translate/core": "^6.0.1",
-    "@ngx-translate/http-loader": "^0.0.3",
-    "angular-tslint-rules": "^1.0.0"
+    "@ngx-config/core": "~0.2.0-rc.5",
+    "@ngx-config/http-loader": "~0.2.0-rc.1",
+    "@ngx-meta/core": "~0.4.0-rc.2",
+    "@ngx-i18n-router/core": "~0.4.0-beta.2",
+    "@ngx-i18n-router/config-loader": "~0.2.0-rc.3",
+    "@ngx-translate/core": "~6.0.1",
+    "@ngx-translate/http-loader": "~0.0.3"
   },
   "devDependencies": {
     "@angular/cli": "1.0.2",
@@ -64,6 +63,7 @@
     "protractor": "~5.1.0",
     "ts-node": "~2.0.0",
     "tslint": "~5.2.0",
+    "angular-tslint-rules": "^1.0.0",
     "typescript": "~2.2.0"
   }
 }
