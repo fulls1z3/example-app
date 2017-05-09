@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // libs
-import { I18NRouterModule } from '@nglibs/i18n-router';
+import { I18NRouterModule } from '@ngx-i18n-router/core';
 
 // routes & components
 import { routes } from './home.routes';
