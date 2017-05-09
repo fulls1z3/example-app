@@ -79,9 +79,9 @@
       "vendor": [
         "@ngx-config/core",
         "@ngx-config/http-loader",
-        "@nglibs/meta",
-        "@nglibs/i18n-router",
-        "@nglibs/i18n-router-config-loader",
+        "@ngx-meta/core",
+        "@ngx-i18n-router/core",
+        "@ngx-i18n-router/config-loader",
         "@ngx-translate/core",
         "@ngx-translate/http-loader"
       ]
