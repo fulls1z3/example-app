@@ -86,7 +86,9 @@ module.exports = function(options) {
     module: {
       rules: [
         /**
-         * TS linter
+         * tslint-loader
+         *
+         * See: https://github.com/wbuchwalter/tslint-loader
          */
         {
           enforce: 'pre',
@@ -99,9 +101,10 @@ module.exports = function(options) {
         },
 
         /**
-         * Typescript loader support for .ts and Angular 2 async routes via .async.ts
-         * Replace templateUrl and stylesUrl with require()
+         * @ngtools/webpack, ng-router-loader, awesome-typescript-loader and angular2-template-loader for *.ts
          *
+         * See: https://github.com/angular/angular-cli
+         * See: https://github.com/shlomiassaf/ng-router-loader
          * See: https://github.com/s-panferov/awesome-typescript-loader
          * See: https://github.com/TheLarkInn/angular2-template-loader
          */
@@ -125,7 +128,7 @@ module.exports = function(options) {
         },
 
         /**
-         * Json loader support for *.json files.
+         * json-loader for *.json
          *
          * See: https://github.com/webpack/json-loader
          */
@@ -135,10 +138,10 @@ module.exports = function(options) {
         },
 
         /**
-         * Raw loader support for *.css files
-         * Returns file content as string
+         * to-string-loader, and css-loader for *.css
          *
-         * See: https://github.com/webpack/raw-loader
+         * See: https://github.com/gajus/to-string-loader
+         * See: https://github.com/webpack-contrib/css-loader
          */
         {
           test: /\.css$/,
@@ -147,10 +150,9 @@ module.exports = function(options) {
         },
 
         /**
-         * Raw loader support for *.html
-         * Returns file content as string
+         * html-loader for *.html
          *
-         * See: https://github.com/webpack/raw-loader
+         * See: https://github.com/webpack/html-loader
          */
         {
           test: /\.html$/,
@@ -159,7 +161,9 @@ module.exports = function(options) {
         },
 
         /**
-         * File loader for supporting images, for example, in CSS files.
+         * file-loader for images & fonts
+         *
+         * See: https://github.com/webpack-contrib/file-loader
          */
         {
           test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
