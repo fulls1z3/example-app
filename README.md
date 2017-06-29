@@ -21,7 +21,7 @@
 - [angular-tslint-rules] as configuration preset for [TSLint] and [codelyzer].
 - Managing the type definitions using @types.
 
-> Built with `@angular v2.4.0`, bundled with `gulp v4.0` and `webpack v2.5.1`.
+> Built with `@angular v2.4.0`, bundled with `gulp v4.0` and `webpack v3.0.0`.
 
 You can find the live app [here](https://ng-seed-spa.azurewebsites.net).
 
