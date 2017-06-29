@@ -13,17 +13,17 @@
     "typeRoots": [
       "node_modules/@types"
     ],
-    "outDir": "./.temp",
     "rootDir": "."
   },
+  "include": ["./.temp/**/*"],
   "exclude": [
     "node_modules",
     "src",
-    "build/main*.ts",
-    "build/**/*.spec.ts",
-    "build/**/*.e2e.ts",
-    "build/**/*.ngfactory.ts",
-    "build/**/*.ngstyle.ts"
+    "./.temp/build/main*.ts",
+    "./.temp/build/**/*.spec.ts",
+    "./.temp/build/**/*.e2e.ts",
+    "./.temp/build/**/*.ngfactory.ts",
+    "./.temp/build/**/*.ngstyle.ts"
   ],
   "angularCompilerOptions": {
     "genDir": ".",

@@ -13,7 +13,6 @@ const noEmitOnErrorsPlugin = require('webpack/lib/NoEmitOnErrorsPlugin'),
   optimizeJsPlugin = require('optimize-js-plugin'),
   commonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin'),
   uglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin'),
-  // compressionPlugin = require('compression-webpack-plugin'),
   normalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplacementPlugin'),
   loaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 
@@ -132,18 +131,6 @@ module.exports = webpackMerge(commonConfig({env: ENV}),
           negate_iife: false // we need this for lazy v8
         }
       }),
-
-      /**
-       * Plugin: CompressionPlugin
-       * Description: Prepares compressed versions of assets to serve
-       * them with Content-Encoding
-       *
-       * See: https://github.com/webpack/compression-webpack-plugin
-       */
-      //new compressionPlugin({
-      //    regExp: /\.css$|\.html$|\.js$|\.map$/,
-      //    threshold: 2 * 1024
-      //}),
 
       // Fix Angular
       new normalModuleReplacementPlugin(

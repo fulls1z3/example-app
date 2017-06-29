@@ -234,7 +234,6 @@ gulp.task('build:prod',
       tasks.ts.copy
     ),
     tasks.aot.compile,
-    tasks.clean.temp,
     tasks.bundle.prod,
     views.assets.copy
   ));
