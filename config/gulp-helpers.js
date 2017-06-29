@@ -1,8 +1,7 @@
 /**
  * Dependencies
  */
-const gulp = require('gulp'),
-  $ = {},
+const $ = {},
   $$ = require('./helpers');
 
 $.lazypipe = require('lazypipe');
@@ -31,7 +30,7 @@ const tslint = function () {
     })();
 };
 
-const webpackFormatter = function (err, stats, callback, settings) {
+const webpackFormatter = function (err, stats, callback) {
   if (err) {
     console.log($.chalk.red(`Error: ${err}`));
     callback();

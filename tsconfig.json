@@ -13,9 +13,9 @@
     "typeRoots": [
       "node_modules/@types"
     ],
-    "outDir": "./.temp",
     "rootDir": "."
   },
+  "include": ["./.temp/**/*"],
   "exclude": [
     "node_modules",
     "src",

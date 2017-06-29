@@ -66,24 +66,28 @@
         }
       ],
       "angular": [
-        "@angular/platform-browser",
-        "@angular/platform-browser-dynamic",
-        "@angular/core",
         "@angular/common",
+        "@angular/compiler",
+        "@angular/core",
         "@angular/forms",
         "@angular/http",
-        "@angular/router",
-        "@angularclass/bootloader",
-        "rxjs"
+        "@angular/platform-browser",
+        "@angular/platform-browser-dynamic",
+        "@angular/router"
       ],
       "vendor": [
+        "core-js",
+        "rxjs",
+        "zone.js",
+        "lodash",
+        "@angularclass/bootloader",
         "@ngx-config/core",
         "@ngx-config/http-loader",
+        "@ngx-translate/core",
+        "@ngx-translate/http-loader",
         "@ngx-meta/core",
         "@ngx-i18n-router/core",
-        "@ngx-i18n-router/config-loader",
-        "@ngx-translate/core",
-        "@ngx-translate/http-loader"
+        "@ngx-i18n-router/config-loader"
       ]
     }
   }

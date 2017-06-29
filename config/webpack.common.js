@@ -40,7 +40,7 @@ module.exports = function(options) {
      */
     entry: {
       'polyfills': $$.root(`${settings.paths.src.root}/polyfills.ts`),
-      'app': $$.root(`${settings.paths.src.root}/main${isProd ? '-prod' : ''}.ts`)
+      'app': $$.root(`${isProd ? settings.paths.temp.build.root : settings.paths.src.root}/main${isProd ? '-prod' : ''}.ts`)
     },
 
     /**
