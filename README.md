@@ -17,7 +17,7 @@
 - [angular-tslint-rules] as configuration preset for [TSLint] and [codelyzer].
 - Managing the type definitions using @types.
 
-> Built with [angular-cli] version 1.1.3.
+> Built with [angular-cli] version 1.2.6.
 
 You can find the live app [here](https://ng-seed-spa.azurewebsites.net).
 
