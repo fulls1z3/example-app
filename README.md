@@ -8,10 +8,10 @@
 - [AoT compilation] for rapid page loads on production builds (*using [@ngtools/webpack]*).
 - SCSS compilation support.
 - Lazy loading of modules.
-- Uses [@ngx-config] for configuration management.
-- Uses [@ngx-cache] for caching.
-- Uses [@ngx-translate] and [@ngx-i18n-router] for i18n support.
-- Uses [@ngx-meta] for SEO.
+- Uses [ngx-config] for configuration management.
+- Uses [ngx-cache] for caching.
+- Uses [ngx-translate] and [ngx-i18n-router] for i18n support.
+- Uses [ngx-meta] for SEO.
 - ~Sample unit tests with Jasmine and Karma including code coverage via istanbul.~
 - ~End-to-end tests with Protractor.~
 - [angular-tslint-rules] as configuration preset for [TSLint] and [codelyzer].
@@ -22,16 +22,16 @@
 You can find the live app [here](https://ng-seed-spa.azurewebsites.net).
 
 #### WARNING
-[@ngx-i18n-router] does not work with [angular-cli] (*yet*), and giving the following error during [AoT compilation]:
+[ngx-i18n-router] does not work with [angular-cli] (*yet*), and giving the following error during [AoT compilation]:
 
 > `ERROR in Cannot read property 'loadChildren' of undefined`
 
-[@ngx-i18n-router] injects routes with the `ROUTES` DI token using the `useFactory` property. However [@ngtools/webpack] forces routes to be *static*, and prevents code splitting (*for lazy-loaded modules*) by third parties.
+[ngx-i18n-router] injects routes with the `ROUTES` DI token using the `useFactory` property. However [@ngtools/webpack] forces routes to be *static*, and prevents code splitting (*for lazy-loaded modules*) by third parties.
 
 This issue is caused by the `ngtools_impl` located in the package `@angular/compiler-cli`.
 
 You can track the actual status of this issue at the following URLs:
-- https://github.com/ngx-i18n-router/core/issues/2
+- https://github.com/fulls1z3/ngx-i18n-router/issues/2
 - https://github.com/angular/angular/issues/15305
 
 On the other hand, the [ng-router-loader] (*together with [awesome-typescipt-loader]*) is safe to go with - it compiles without a problem. There's an overhead: you need to **manually** configure **build tools** (*dev/prod sever, task runners, [webpack], etc*).
@@ -102,11 +102,11 @@ Copyright (c) 2017 [Burak Tasci]
 [AoT compilation]: https://angular.io/docs/ts/latest/cookbook/aot-compiler.html
 [webpack]: http://webpack.github.io
 [@ngtools/webpack]: https://www.npmjs.com/package/@ngtools/webpack
-[@ngx-config]: https://github.com/ngx-config/core
-[@ngx-cache]: https://github.com/ngx-cache/core
-[@ngx-translate]: https://github.com/ngx-translate/core
-[@ngx-i18n-router]: https://github.com/ngx-i18n-router/core
-[@ngx-meta]: https://github.com/ngx-meta/core
+[ngx-config]: https://github.com/fulls1z3/ngx-config
+[ngx-cache]: https://github.com/fulls1z3/ngx-cache
+[ngx-translate]: https://github.com/ngx-translate/core
+[ngx-i18n-router]: https://github.com/fulls1z3/ngx-i18n-router
+[ngx-meta]: https://github.com/fulls1z3/ngx-meta
 [Jasmine]: https://jasmine.github.io
 [Karma]: https://karma-runner.github.io
 [Istanbul]: https://github.com/webpack-contrib/istanbul-instrumenter-loader
