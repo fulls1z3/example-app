@@ -93,6 +93,13 @@ Navigate to `http://localhost:4200/` in your browser.
 
 **NOTE**: The above setup instructions assume you have added local npm bin folders to your path. If this is not the case you will need to install the [angular-cli] globally.
 
+## Contributing
+If you want to file a bug, contribute some code, or improve documentation, please read up on the following contribution guidelines:
+- [Issue guidelines](CONTRIBUTING.md#submit)
+- [Contributing guidelines](CONTRIBUTING.md)
+- [Coding rules](CONTRIBUTING.md#rules)
+- [ChangeLog](CHANGELOG.md)
+
 ## License
 The MIT License (MIT)
 
