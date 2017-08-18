@@ -55,6 +55,13 @@ npm run serve:hmr
 
 Navigate to `http://localhost:1337` in your browser.
 
+## Contributing
+If you want to file a bug, contribute some code, or improve documentation, please read up on the following contribution guidelines:
+- [Issue guidelines](CONTRIBUTING.md#submit)
+- [Contributing guidelines](CONTRIBUTING.md)
+- [Coding rules](CONTRIBUTING.md#rules)
+- [ChangeLog](CHANGELOG.md)
+
 ## License
 The MIT License (MIT)
 
