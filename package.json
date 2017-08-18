@@ -1,6 +1,6 @@
 {
   "name": "@ng-seed/spa",
-  "version": "0.2.0-beta.2",
+  "version": "0.2.0-beta.3",
   "description": "Seed project for Angular apps featuring Webpack, dev/prod modes, DLLs, AoT compilation, HMR, SCSS compilation, lazy loading, config, cache, i18n, SEO, and TSLint/codelyzer",
   "repository": {
     "type": "git",
