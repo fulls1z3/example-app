@@ -42,6 +42,9 @@ git checkout angular-2.4.x
 # use npm (or yarn) to install the dependencies
 npm install
 
+# run tslint
+npm run lint
+
 # dev build
 npm run build:dev
 # prod build
