@@ -1,29 +1,32 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "es2015",
+    "rootDir": ".",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "module": "es2015",
+    "target": "es5",
     "removeComments": true,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
     "importHelpers": true,
-    "lib": [ "es2015", "dom" ],
     "typeRoots": [
       "node_modules/@types"
     ],
-    "rootDir": "."
+    "lib": [
+      "es2017",
+      "dom"
+    ]
   },
   "include": ["./.temp/**/*"],
   "exclude": [
     "node_modules",
     "src",
-    "./.temp/build/main*.ts",
-    "./.temp/build/**/*.spec.ts",
-    "./.temp/build/**/*.e2e.ts",
-    "./.temp/build/**/*.ngfactory.ts",
-    "./.temp/build/**/*.ngstyle.ts"
+    ".temp/build/main*.ts",
+    ".temp/build/**/*.spec.ts",
+    ".temp/build/**/*.e2e.ts",
+    ".temp/build/**/*.ngfactory.ts",
+    ".temp/build/**/*.ngstyle.ts"
   ],
   "angularCompilerOptions": {
     "genDir": ".",
