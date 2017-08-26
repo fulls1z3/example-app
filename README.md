@@ -85,6 +85,9 @@ git checkout angular-cli
 # Use npm or yarn to install the dependencies:
 npm install
 
+# run tslint
+npm run lint
+
 # start the server
 ng serve
 ```
