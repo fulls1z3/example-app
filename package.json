@@ -18,6 +18,7 @@
   "scripts": {
     "build:dev": "gulp clean && gulp build:dev",
     "build:prod": "gulp clean && gulp build:prod",
+    "clean": "gulp clean",
     "lint": "gulp review:tslint",
     "serve": "nodemon ./.server/spa-server.js",
     "serve:hmr": "node ./.server/spa-server.hmr.js",
