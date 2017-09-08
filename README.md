@@ -1,4 +1,6 @@
 # fulls1z3's example application
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/fulls1z3/example-app.svg)](https://greenkeeper.io/)
 > Please support this project by simply putting a Github star. Share this library with friends on Twitter and everywhere else you can.
 
 **`fulls1z3/example-app`** is a sample project for Angular apps following the common patterns and [best practices](https://angular.io/styleguide)
