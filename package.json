@@ -43,8 +43,8 @@
     "lodash": "^4.17.4",
     "@ngx-config/core": "4.0.1",
     "@ngx-config/http-loader": "4.0.1",
-    "@ngx-translate/core": "~8.0.0",
-    "@ngx-translate/http-loader": "~1.0.2",
+    "@ngx-translate/core": "~6.0.1",
+    "@ngx-translate/http-loader": "~0.0.3",
     "@ngx-meta/core": "4.0.1"
   },
   "devDependencies": {
@@ -73,7 +73,9 @@
   },
   "greenkeeper": {
     "ignore": [
-      "@types/lodash"
+      "@types/lodash",
+      "@ngx-translate/core",
+      "@ngx-translate/http-loader"
     ]
   }
 }
