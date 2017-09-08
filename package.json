@@ -72,6 +72,8 @@
     "typescript": "~2.3.3"
   },
   "greenkeeper": {
-    "ignore": ["@types/lodash"]
+    "ignore": [
+      "@types/lodash"
+    ]
   }
 }
