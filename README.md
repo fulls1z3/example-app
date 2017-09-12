@@ -81,4 +81,4 @@ Copyright (c) 2017 [Burak Tasci]
 [angular-tslint-rules]: https://github.com/fulls1z3/angular-tslint-rules
 [TSLint]: https://github.com/palantir/tslint
 [codelyzer]: https://github.com/mgechev/codelyzer
-[Burak Tasci]: http://www.buraktasci.com
+[Burak Tasci]: https://github.com/fulls1z3
