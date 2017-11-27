@@ -55,7 +55,7 @@
     "@types/jasminewd2": "~2.0.2",
     "@types/lodash": "4.14.55",
     "@types/node": "~8.0.27",
-    "angular-tslint-rules": "1.0.4",
+    "angular-tslint-rules": "1.1.0",
     "codelyzer": "~3.2.0",
     "jasmine-core": "~2.8.0",
     "jasmine-spec-reporter": "~4.2.1",
