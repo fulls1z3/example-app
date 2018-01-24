@@ -41,11 +41,11 @@
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14",
     "lodash": "~4.17.4",
-    "@ngx-config/core": "4.0.1",
-    "@ngx-config/http-loader": "4.0.1",
+    "@ngx-config/core": "5.0.0",
+    "@ngx-config/http-loader": "5.0.0",
     "@ngx-translate/core": "~6.0.1",
     "@ngx-translate/http-loader": "~0.0.3",
-    "@ngx-meta/core": "4.0.1"
+    "@ngx-meta/core": "5.0.0"
   },
   "devDependencies": {
     "@angular/cli": "1.4.7",
@@ -57,7 +57,7 @@
     "@types/node": "~8.0.27",
     "angular-tslint-rules": "1.0.4",
     "codelyzer": "~3.2.0",
-    "jasmine-core": "~2.8.0",
+    "jasmine-core": "~2.9.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~2.0.0",
     "karma-chrome-launcher": "~2.2.0",
