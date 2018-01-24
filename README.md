@@ -58,10 +58,13 @@ If you want to file a bug, contribute some code, or improve documentation, pleas
 - [Coding rules](CONTRIBUTING.md#rules)
 - [Change log](CHANGELOG.md)
 
+#### Thanks to
+- [JetBrains], for their support to this open source project with free [WebStorm] licenses.
+
 ## License
 The MIT License (MIT)
 
-Copyright (c) 2017 [Burak Tasci]
+Copyright (c) 2018 [Burak Tasci]
 
 [angular-cli]: https://github.com/angular/angular-cli
 [@types]: https://www.npmjs.com/~types
@@ -81,4 +84,6 @@ Copyright (c) 2017 [Burak Tasci]
 [angular-tslint-rules]: https://github.com/fulls1z3/angular-tslint-rules
 [TSLint]: https://github.com/palantir/tslint
 [codelyzer]: https://github.com/mgechev/codelyzer
+[JetBrains]: https://www.jetbrains.com/community/opensource
+[WebStorm]:   https://www.jetbrains.com/webstorm
 [Burak Tasci]: https://github.com/fulls1z3
