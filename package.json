@@ -42,7 +42,7 @@
     "zone.js": "^0.8.14",
     "lodash": "~4.17.4",
     "@ngx-config/core": "4.0.1",
-    "@ngx-config/http-loader": "4.0.1",
+    "@ngx-config/http-loader": "5.0.0",
     "@ngx-translate/core": "~6.0.1",
     "@ngx-translate/http-loader": "~0.0.3",
     "@ngx-meta/core": "5.0.0"
