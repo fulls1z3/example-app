@@ -73,9 +73,7 @@
   },
   "greenkeeper": {
     "ignore": [
-      "@types/lodash",
-      "@ngx-translate/core",
-      "@ngx-translate/http-loader"
+      "@types/lodash"
     ]
   }
 }
