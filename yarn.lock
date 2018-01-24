@@ -205,9 +205,9 @@
   version "2.5.54"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.5.54.tgz#a6b5f2ae2afb6e0307774e8c7c608e037d491c63"
 
-"@types/jasmine@~2.6.0":
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.6.0.tgz#997b41a27752b4850af2683bc4a8d8222c25bd02"
+"@types/jasmine@2.8.0":
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.8.0.tgz#caa5395081143e419d3f4b0277c66b26fc783e68"
 
 "@types/jasminewd2@~2.0.2":
   version "2.0.3"
@@ -329,9 +329,9 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
-angular-tslint-rules@1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/angular-tslint-rules/-/angular-tslint-rules-1.0.4.tgz#68cfa1c4ec26114d569d9b82e6bb752dd007645c"
+angular-tslint-rules@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/angular-tslint-rules/-/angular-tslint-rules-1.1.0.tgz#5015e86f9f83cc2619b7ab67fd872b033b6e638f"
 
 ansi-html@0.0.7:
   version "0.0.7"
