@@ -48,7 +48,7 @@
     "@ngx-meta/core": "5.0.0"
   },
   "devDependencies": {
-    "@angular/cli": "1.6.6",
+    "@angular/cli": "1.6.7",
     "@angular/compiler-cli": "~5.2.1",
     "@angular/language-service": "~5.2.1",
     "@types/jasmine": "~2.8.5",
