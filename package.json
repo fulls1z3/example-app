@@ -45,7 +45,7 @@
     "@ngx-config/http-loader": "5.0.0",
     "@ngx-translate/core": "~6.0.1",
     "@ngx-translate/http-loader": "~0.0.3",
-    "@ngx-meta/core": "5.0.0"
+    "@ngx-meta/core": "6.0.0-rc.1"
   },
   "devDependencies": {
     "@angular/cli": "1.6.6",
